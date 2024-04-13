@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Noto_Serif_KR } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 const notoSerifKR = Noto_Serif_KR({ weight: ["400","500","700"], subsets: ["latin"]});
-
+const pretendard=localFont({
+  src: "./fonts/PretendardVariable.ttf",
+});
 export const metadata: Metadata = {
-  title: "Garden",
-  description: "정원이만을 위한 페이지",
+  title: "(주)정석기술연구소",
+  description: "건설분쟁의 기술지원파트너",
 };
 
 export default function RootLayout({
@@ -18,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={notoSerifKR.className}>{children}</body>
+      <body className={ pretendard.className }>{children}</body>
     </html>
   );
 }
