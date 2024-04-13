@@ -1,19 +1,11 @@
-import Slider from "@ant-design/react-slick";
 export default function Home() {
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
   return (
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 섹션 */}
-
       <header className="flex h-[46px] items-center justify-center bg-white ">
         <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
       </header>
+
       {/* 이미지 섹션 */}
       <section className="relative flex h-auto w-full items-center justify-center sm:h-[220px] md:h-[320px] lg:h-[495px] ">
         <img

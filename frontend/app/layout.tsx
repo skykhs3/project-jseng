@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Noto_Serif_KR } from "next/font/google";
-import localFont from 'next/font/local'
+import localFont from "next/font/local";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const notoSerifKR = Noto_Serif_KR({ weight: ["400","500","700"], subsets: ["latin"]});
-const pretendard=localFont({
+const notoSerifKR = Noto_Serif_KR({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
+const pretendard = localFont({
   src: "./fonts/PretendardVariable.ttf",
 });
 export const metadata: Metadata = {
@@ -21,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={ pretendard.className }>{children}</body>
+      <body className={pretendard.className}>{children}</body>
     </html>
   );
 }
