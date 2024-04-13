@@ -1,21 +1,28 @@
-// src/components/Home.js
+import Slider from "@ant-design/react-slick";
 export default function Home() {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 섹션 */}
+
       <header className="flex h-[46px] items-center justify-center bg-white ">
         <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
       </header>
-
       {/* 이미지 섹션 */}
-      <section className="relative flex h-[220px] w-full items-center justify-center md:h-[320px] lg:h-[495px] ">
+      <section className="relative flex h-auto w-full items-center justify-center sm:h-[220px] md:h-[320px] lg:h-[495px] ">
         <img
           src="/image_banner.jpg"
           alt="배너"
           className="absolute z-0 h-full w-full object-cover"
         />
         <div className="absolute z-10 h-full w-full bg-black opacity-50" />
-        <p className="text-baseline z-20 p-10 text-sm font-light text-white md:text-2xl lg:text-3xl">
+        <p className="text-baseline z-20 p-10 text-sm font-light text-white md:text-lg lg:text-2xl">
           <strong>정석기술연구소</strong> - 국내 최고의 건설 전문가 팀.
           <br />
           <br />
