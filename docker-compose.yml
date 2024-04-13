@@ -1,0 +1,11 @@
+version: '3.8'  # 사용할 Compose 파일 버전
+
+services:
+  frontend:
+    build: ./frontend  # 현재 디렉토리의 Dockerfile을 사용하여 이미지를 빌드
+    ports:
+      - "3001:3000"  # 호스트의 3000 포트를 컨테이너의 3000 포트에 연결
+    volumes:
+      - ./frontend:/app:cached # 현재 디렉토리를 컨테이너의 /app 디렉토리에 마운트
+      - /app/node_modules  # node_modules 디렉토리는 볼륨을 사용해 컨테이너에만 유지
+    command: npm run dev  # 컨테이너 실행 시 실행할 명령어
