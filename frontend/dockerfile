@@ -1,0 +1,23 @@
+# 사용할 Node.js 버전을 지정하는 베이스 이미지 선택
+FROM node:latest
+
+# 애플리케이션 파일들이 위치할 디렉토리 생성
+WORKDIR /app
+
+# package.json 및 package-lock.json 파일 복사
+COPY package.json package-lock.json ./
+
+# 의존성 설치
+RUN npm install --frozen-lockfile
+
+# 나머지 애플리케이션 소스 코드 복사
+COPY . .
+
+# Next.js 애플리케이션 빌드
+RUN npm run build
+
+# 앱이 실행될 포트 지정
+EXPOSE 3000
+
+# 애플리케이션 실행 명령어
+CMD ["npm", "start"]
