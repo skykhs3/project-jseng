@@ -26,6 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta
+        name="naver-site-verification"
+        content="68d9a131b648d3344dac62d04e072a22d4a2151d"
+      />
       <body className={pretendard.className + " bg-white"}>{children}</body>
     </html>
   );
