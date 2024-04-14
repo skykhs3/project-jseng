@@ -28,8 +28,24 @@ export default function RootLayout({
     <html lang="en">
       <meta
         name="naver-site-verification"
-        content="68d9a131b648d3344dac62d04e072a22d4a2151d"
+        content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
       />
+      <head>
+        <title>(주)정석기술연구소</title>
+        <meta
+          name="description"
+          content="건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석"
+        />
+        <meta property="og:title" content="(주)정석기술연구소" />
+        <meta
+          property="og:description"
+          content="건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석"
+        />
+        <meta
+          property="og:image"
+          content="https://jseng.fly.dev/icon_logo.png"
+        />
+      </head>
       <body className={pretendard.className + " bg-white"}>{children}</body>
     </html>
   );
