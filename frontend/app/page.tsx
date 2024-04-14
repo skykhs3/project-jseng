@@ -49,7 +49,7 @@ export default function Home() {
       for (const entry of entries) {
         // entry.contentRect는 요소의 크기와 위치 정보를 제공
         const { height, width } = entry.contentRect;
-        console.log(`Current width1: ${width}px`); // 현재 너비를 콘솔에 출력
+        console.log(`Current height:${height}px width1: ${width}px`); // 현재 너비를 콘솔에 출력
         setHeight(height); // 현재 높이를 상태에 반영
         setWidth(width); // 현재 너비를 상태에 반영
       }
@@ -77,6 +77,13 @@ export default function Home() {
         className="relative h-[220px] md:h-[320px] lg:h-[495px]"
         ref={elementRef}
       >
+        <div className="absolute h-full w-full">
+          <img
+            src="image_banner.jpg"
+            alt="배너"
+            style={{ width: "100%", height: `${height}px`, objectFit: "cover" }}
+          />
+        </div>
         <MyImageSlider height={height} width={width} />
       </section>
 
