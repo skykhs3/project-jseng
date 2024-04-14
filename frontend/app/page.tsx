@@ -245,21 +245,21 @@ export default function Home() {
         <p className="text-sm">
           서울특별시 서초구 서초중앙로24길 11 (우)06604
           <br className="hidden max-sm:block" />
-          <p className="inline max-sm:hidden"> / </p>
+          <span className="inline max-sm:hidden"> / </span>
           TEL 02-533-7753
           <br className="hidden max-sm:block" />
-          <p className="inline max-sm:hidden"> / </p>
+          <span className="inline max-sm:hidden"> / </span>
           FAX 02-533-7752
           <br className="hidden max-sm:block" />
-          <p className="inline max-sm:hidden"> / </p>
+          <span className="inline max-sm:hidden"> / </span>
           E-mail jseng@jseng.co.kr
           <br />
           정석기술연구소
           <br className="hidden max-sm:block" />
-          <p className="inline max-sm:hidden"> / </p>
+          <span className="inline max-sm:hidden"> / </span>
           사업자등록번호: 126-88-02894
           <br className="hidden max-sm:block" />
-          <p className="inline max-sm:hidden"> / </p>
+          <span className="inline max-sm:hidden"> / </span>
           대표자: 김종석
         </p>
       </footer>
