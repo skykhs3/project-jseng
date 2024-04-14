@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { Noto_Serif_KR } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const inter = Inter({ subsets: ["latin"] });
 const notoSerifKR = Noto_Serif_KR({

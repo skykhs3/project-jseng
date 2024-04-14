@@ -1,3 +1,8 @@
+"use client";
+
+import MyImageSlider from "./ui/my-image-slider";
+import React, { useState, useEffect, useRef } from "react";
+
 function Divider() {
   return <hr className="ml-10 mr-10 h-0 w-auto bg-[#E4E4E7]"></hr>;
 }
@@ -35,6 +40,30 @@ function EmployeeCard({
 }
 
 export default function Home() {
+  const [width, setWidth] = useState(0);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        // entry.contentRect는 요소의 크기와 위치 정보를 제공
+        const { width } = entry.contentRect;
+        console.log(`Current width1: ${width}px`); // 현재 너비를 콘솔에 출력
+        setWidth(width); // 현재 너비를 상태에 반영
+      }
+    });
+
+    // elementRef.current가 존재하는 경우 해당 요소를 관찰 시작
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    // 컴포넌트 언마운트 시 관찰 종료
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 섹션 */}
@@ -42,7 +71,14 @@ export default function Home() {
         <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
       </header>
 
-      {/* 이미지 섹션 */}
+      <section
+        className="relative h-[220px] md:h-[320px] lg:h-[495px]"
+        ref={elementRef}
+      >
+        <MyImageSlider width={width} />
+      </section>
+
+      {/* 이미지 섹션
       <section className="relative flex h-auto w-full items-center justify-center sm:h-[220px] md:h-[320px] lg:h-[495px] ">
         <img
           src="/image_banner.jpg"
@@ -63,7 +99,7 @@ export default function Home() {
             지원 및 기술 자문을 제공합니다.
           </em>
         </p>
-      </section>
+      </section> */}
 
       {/* 회사 소개 섹션 */}
       <section className="bg-white p-10 text-center lg:flex">

@@ -31,3 +31,14 @@ body {
     text-wrap: balance;
   }
 }
+
+.slick-slider{
+  height: 100%;
+}
+.slick-list{
+  height: 100%;
+  --gp-width: 100%;
+}
+.slick-track{
+  height: 100%;
+}
