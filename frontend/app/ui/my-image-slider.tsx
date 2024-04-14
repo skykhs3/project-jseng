@@ -25,22 +25,31 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
       <Slider {...settings}>
         <div style={{ position: "relative", width: "100%" }}>
           <div className="relative">
-            <div
-              className={`absolute w-[100%] h-[${height}px] z-10 bg-black`}
-            ></div>
+            <div className="absolute h-full w-full bg-black opacity-50"></div>
+            <img
+              src="image_banner.jpg"
+              alt="배너"
+              style={{
+                width: "100%",
+                height: `${height}px`,
+                objectFit: "cover",
+              }}
+            />
           </div>
-          <img
-            src="image_banner.jpg"
-            alt="배너"
-            style={{ width: "100%", height: `${height}px`, objectFit: "cover" }}
-          />
         </div>
         <div style={{ position: "relative", width: "100%" }}>
-          <img
-            src="image_banner.jpg"
-            alt="배너"
-            style={{ width: "100%", height: `${height}px`, objectFit: "cover" }}
-          />
+          <div className="relative">
+            <div className="absolute h-full w-full bg-black opacity-50"></div>
+            <img
+              src="image_banner.jpg"
+              alt="배너"
+              style={{
+                width: "100%",
+                height: `${height}px`,
+                objectFit: "cover",
+              }}
+            />
+          </div>
         </div>
       </Slider>
     </div>
