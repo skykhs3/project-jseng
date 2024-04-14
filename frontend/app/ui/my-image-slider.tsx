@@ -73,7 +73,7 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
               </p>
             </div>
             <img
-              src="image_banner.jpg"
+              src="image_banner2.jpg"
               alt="배너"
               style={{
                 width: "100%",
@@ -103,7 +103,7 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
               </p>
             </div>
             <img
-              src="image_banner.jpg"
+              src="image_banner3.jpg"
               alt="배너"
               style={{
                 width: "100%",
