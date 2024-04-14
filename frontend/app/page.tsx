@@ -79,7 +79,7 @@ export default function Home() {
         ref={elementRef}
       >
         <div className="absolute h-full w-full">
-          <div className="absolute h-full w-full bg-black opacity-50"></div>
+          {/* <div className="absolute h-full w-full bg-black opacity-50"></div> */}
           <img
             src="image_banner.jpg"
             alt="배너"

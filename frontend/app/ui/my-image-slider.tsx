@@ -12,8 +12,8 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
-    speed: 2000,
+    autoplaySpeed: 2500,
+    speed: 1000,
     centerPadding: "0px",
     arrows: false,
     accessibility: false,
@@ -25,7 +25,7 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
       <Slider {...settings}>
         <div style={{ position: "relative", width: "100%" }}>
           <div className="relative flex flex-col items-center justify-center">
-            <div className="absolute h-full w-full bg-black opacity-50"></div>
+            {/* <div className="absolute h-full w-full bg-black opacity-50"></div>
             <div className="absolute flex w-full justify-center p-6">
               <p className="text-base font-light text-white md:text-xl lg:text-3xl">
                 <strong>정석기술연구소</strong> <br />
@@ -40,7 +40,7 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
                   송무 지원 및 기술 자문을 제공합니다.
                 </em>
               </p>
-            </div>
+            </div> */}
 
             <img
               src="image_banner.jpg"
