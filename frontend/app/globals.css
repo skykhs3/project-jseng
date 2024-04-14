@@ -31,3 +31,6 @@ body {
     text-wrap: balance;
   }
 }
+.slick-dots{
+  bottom: 10px;
+}

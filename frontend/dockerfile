@@ -1,5 +1,5 @@
 # 사용할 Node.js 버전을 지정하는 베이스 이미지 선택
-FROM node:latest
+FROM node:18-alpine
 
 # 애플리케이션 파일들이 위치할 디렉토리 생성
 WORKDIR /app

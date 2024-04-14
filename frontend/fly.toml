@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for garden0416 on 2024-04-13T00:04:41+09:00
+# fly.toml app configuration file generated for jseng on 2024-04-13T19:38:00+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'garden0416'
-primary_region = 'hkg'
+app = 'jseng'
+primary_region = 'nrt'
 
 [build]
 
@@ -15,10 +15,6 @@ primary_region = 'hkg'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
-
-[[statics]]
-  guest_path = "/Users/kimhyeonsu/Desktop/My Record/5. SkunkWorks/5. happy-birthday/frontend/.next/"
-  url_prefix = "/static"
 
 [[vm]]
   memory = '1gb'
