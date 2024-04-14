@@ -87,7 +87,7 @@ export default function Home() {
             건설분쟁·하자소송 기술(송무)지원 업무
           </div>
           <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-            중공도서 사전검토 용역 업무
+            준공도서용역공도서 사전검토 용역 업무
           </p>
           <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
             법원 공사비 감정·분석 및 컨설팅 업무
@@ -138,7 +138,7 @@ export default function Home() {
               "SK하이닉스 품질, 안전자문위원",
               "광운대 법무대학원 27대 원우회회장",
             ],
-            imageSrc: "/image_김종석.png",
+            imageSrc: "/image_kimjongseok.png",
           })}
           {EmployeeCard({
             name: "이건후",
@@ -153,7 +153,7 @@ export default function Home() {
               "(주)동양건설산업 건축팀/ 건축견적팀/ CS팀 근무",
               "LH아파트 외 아파트, 주상복합, 오피스텔 현장 수행",
             ],
-            imageSrc: "/image_김종석.png",
+            imageSrc: "/image_kimjongseok.png",
           })}
           {EmployeeCard({
             name: "강민주",
@@ -165,7 +165,7 @@ export default function Home() {
               "엔지니어링 회사 기술송무 (실적 200개 현장)",
               "해안종합건축사사무소 근무(주상복합 및 LH공동주택 설계)",
             ],
-            imageSrc: "/image_김종석.png",
+            imageSrc: "/image_kimjongseok.png",
           })}
           {EmployeeCard({
             name: "김도영",
@@ -173,12 +173,12 @@ export default function Home() {
             subPosition: "",
             script: [
               "정석기술연구소 송무담당/준공도서",
-              "건축기사 / 트급기술자",
+              "건축기사 / 특급기술자",
               "엔지니어링 회사 기술송무/준공도서 검토용역 공무",
               "아파트, 주상복합현장 공사/공무 수행",
               "동양건설사업 CS팀 (30개 현장 1만 세대 담당)",
             ],
-            imageSrc: "/image_김종석.png",
+            imageSrc: "/image_kimjongseok.png",
           })}
           {EmployeeCard({
             name: "어떤 사람",
@@ -191,7 +191,7 @@ export default function Home() {
               "아파트, 주상복합현장 공사/공무 수행",
               "동양건설사업 CS팀 (30개 현장 1만 세대 담당)",
             ],
-            imageSrc: "/image_김종석.png",
+            imageSrc: "/image_kimjongseok.png",
           })}
         </div>
       </section>
