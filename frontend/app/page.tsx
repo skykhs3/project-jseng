@@ -40,6 +40,7 @@ function EmployeeCard({
 }
 
 export default function Home() {
+  const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const elementRef = useRef(null);
 
@@ -47,8 +48,9 @@ export default function Home() {
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
         // entry.contentRect는 요소의 크기와 위치 정보를 제공
-        const { width } = entry.contentRect;
+        const { height, width } = entry.contentRect;
         console.log(`Current width1: ${width}px`); // 현재 너비를 콘솔에 출력
+        setHeight(height); // 현재 높이를 상태에 반영
         setWidth(width); // 현재 너비를 상태에 반영
       }
     });
@@ -75,7 +77,7 @@ export default function Home() {
         className="relative h-[220px] md:h-[320px] lg:h-[495px]"
         ref={elementRef}
       >
-        <MyImageSlider width={width} />
+        <MyImageSlider height={height} width={width} />
       </section>
 
       {/* 이미지 섹션
