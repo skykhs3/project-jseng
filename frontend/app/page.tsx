@@ -70,7 +70,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 섹션 */}
       <header className="flex h-[46px] items-center justify-center bg-white ">
-        <img className="h-[36px]" src="/icon_logo.png"></img>
+        <img className="h-[36px]" src="/icon_logo.png" alt="로고"></img>
         <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
       </header>
 

@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <meta
         name="naver-site-verification"
         content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
@@ -45,6 +45,8 @@ export default function RootLayout({
           property="og:image"
           content="https://jseng.fly.dev/icon_logo.png"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jseng.fly.dev/" />
       </head>
       <body className={pretendard.className + " bg-white"}>{children}</body>
     </html>
