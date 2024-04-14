@@ -27,9 +27,9 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
           <div className="relative flex flex-col items-center justify-center">
             <div className="absolute h-full w-full bg-black opacity-50"></div>
             <div className="absolute flex w-full justify-center p-6">
-              <p className="text-lg font-light text-white md:text-xl lg:text-3xl">
-                <strong>정석기술연구소</strong> - 국내 최고의 건설 전문가 팀.
-                <br />
+              <p className="text-base font-light text-white md:text-xl lg:text-3xl">
+                <strong>정석기술연구소</strong> <br />
+                - 국내 최고의 건설 전문가 팀 - <br />
                 <br />
                 설계부터 시공, 법률 자문까지, 모든 건설 프로젝트에 최적화된
                 솔루션을 제공합니다.
@@ -58,9 +58,9 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
           <div className="relative flex flex-col items-center justify-center">
             <div className="absolute h-full w-full bg-black opacity-50"></div>
             <div className="absolute flex w-full justify-center p-6">
-              <p className="text-lg font-light text-white md:text-xl lg:text-3xl">
-                <strong>정석기술연구소</strong> - 국내 최고의 건설 전문가 팀.
-                <br />
+              <p className="text-base font-light text-white md:text-xl lg:text-3xl">
+                <strong>정석기술연구소</strong> <br />
+                - 국내 최고의 건설 전문가 팀 - <br />
                 <br />
                 설계부터 시공, 법률 자문까지, 모든 건설 프로젝트에 최적화된
                 솔루션을 제공합니다.
@@ -88,9 +88,9 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
           <div className="relative flex flex-col items-center justify-center">
             <div className="absolute h-full w-full bg-black opacity-50"></div>
             <div className="absolute flex w-full justify-center p-6">
-              <p className="text-lg font-light text-white md:text-xl lg:text-3xl">
-                <strong>정석기술연구소</strong> - 국내 최고의 건설 전문가 팀.
-                <br />
+              <p className="text-base font-light text-white md:text-xl lg:text-3xl">
+                <strong>정석기술연구소</strong> <br />
+                - 국내 최고의 건설 전문가 팀 - <br />
                 <br />
                 설계부터 시공, 법률 자문까지, 모든 건설 프로젝트에 최적화된
                 솔루션을 제공합니다.

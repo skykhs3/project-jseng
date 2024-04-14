@@ -70,11 +70,12 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 섹션 */}
       <header className="flex h-[46px] items-center justify-center bg-white ">
+        <img className="h-[36px]" src="/icon_logo.png"></img>
         <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
       </header>
 
       <section
-        className="relative h-[220px] md:h-[320px] lg:h-[495px]"
+        className="relative h-[270px] md:h-[320px] lg:h-[495px]"
         ref={elementRef}
       >
         <div className="absolute h-full w-full">
@@ -135,7 +136,7 @@ export default function Home() {
             건설분쟁·하자소송 기술(송무)지원 업무
           </div>
           <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-            준공도서용역공도서 사전검토 용역 업무
+            준공도서 사전검토 용역 업무
           </p>
           <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
             법원 공사비 감정·분석 및 컨설팅 업무
@@ -185,6 +186,7 @@ export default function Home() {
               "(하자소송외 700건, 준공도서용역 100건)",
               "SK하이닉스 품질, 안전자문위원",
               "광운대 법무대학원 27대 원우회회장",
+              "건설중재 전문가 아카데미 제 20기",
             ],
             imageSrc: "/image_kimjongseok.png",
           })}
@@ -201,7 +203,7 @@ export default function Home() {
               "(주)동양건설산업 건축팀/ 건축견적팀/ CS팀 근무",
               "LH아파트 외 아파트, 주상복합, 오피스텔 현장 수행",
             ],
-            imageSrc: "/image_kimjongseok.png",
+            imageSrc: "/icon_logo2.png",
           })}
           {EmployeeCard({
             name: "강민주",
@@ -213,7 +215,7 @@ export default function Home() {
               "엔지니어링 회사 기술송무 (실적 200개 현장)",
               "해안종합건축사사무소 근무(주상복합 및 LH공동주택 설계)",
             ],
-            imageSrc: "/image_kimjongseok.png",
+            imageSrc: "/icon_logo2.png",
           })}
           {EmployeeCard({
             name: "김도영",
@@ -226,20 +228,14 @@ export default function Home() {
               "아파트, 주상복합현장 공사/공무 수행",
               "동양건설사업 CS팀 (30개 현장 1만 세대 담당)",
             ],
-            imageSrc: "/image_kimjongseok.png",
+            imageSrc: "/icon_logo2.png",
           })}
           {EmployeeCard({
-            name: "어떤 사람",
-            position: "직원",
+            name: "김미지",
+            position: "대리",
             subPosition: "",
-            script: [
-              "정석기술연구소 송무담당/준공도서",
-              "건축기사 / 트급기술자",
-              "엔지니어링 회사 기술송무/준공도서 검토용역 공무",
-              "아파트, 주상복합현장 공사/공무 수행",
-              "동양건설사업 CS팀 (30개 현장 1만 세대 담당)",
-            ],
-            imageSrc: "/image_kimjongseok.png",
+            script: ["송무·적산 담당", "건축기사 / 토목기사"],
+            imageSrc: "/icon_logo2.png",
           })}
         </div>
       </section>
