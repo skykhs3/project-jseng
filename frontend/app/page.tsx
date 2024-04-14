@@ -89,29 +89,6 @@ export default function Home() {
         <MyImageSlider height={height} width={width} />
       </section>
 
-      {/* 이미지 섹션
-      <section className="relative flex h-auto w-full items-center justify-center sm:h-[220px] md:h-[320px] lg:h-[495px] ">
-        <img
-          src="/image_banner.jpg"
-          alt="배너"
-          className="absolute z-0 h-full w-full object-cover"
-        />
-        <div className="absolute z-10 h-full w-full bg-black opacity-50" />
-        <p className="text-baseline z-20 p-10 text-lg font-light text-white md:text-xl lg:text-3xl">
-          <strong>정석기술연구소</strong> - 국내 최고의 건설 전문가 팀.
-          <br />
-          <br />
-          설계부터 시공, 법률 자문까지, 모든 건설 프로젝트에 최적화된 솔루션을
-          제공합니다.
-          <br />
-          <br />
-          <em>
-            안전과 품질을 최우선으로, 국내 최고 건설 전문 로펌과 협력하여 송무
-            지원 및 기술 자문을 제공합니다.
-          </em>
-        </p>
-      </section> */}
-
       {/* 회사 소개 섹션 */}
       <section className="bg-white p-10 text-center lg:flex">
         <h2 className="mb-5 min-w-64 text-3xl text-[#09090b] lg:text-4xl">
