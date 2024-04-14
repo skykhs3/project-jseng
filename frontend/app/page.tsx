@@ -18,11 +18,13 @@ function EmployeeCard({
   imageSrc,
 }: EmployeeCardProps) {
   return (
-    <div className="m-2 flex w-auto max-w-full flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md">
+    <div className="m-2 mb-4 flex w-auto max-w-full flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md">
       <img src={imageSrc} alt="임직원 이미지" className="w-72 rounded-md" />
+      <div className="h-4"></div>
       <h3 className="text-lg font-semibold text-black">{name}</h3>
       <p className="text-base text-[#09090b]">{position}</p>
       <p className="text-sm text-[#09090b]">{subPosition}</p>
+      <div className="h-4"></div>
       <ul className="w-72 max-w-[100%] text-sm text-[#52525b]">
         {script.map((s, idx) => (
           <li key={idx}>{s}</li>
@@ -205,9 +207,24 @@ export default function Home() {
       {/* 푸터 */}
       <footer className="bg-white p-4 text-center text-slate-700">
         <p className="text-sm">
-          서울특별시 서초구 서초중앙로24길 11 (우)06604 / TEL 02-533-7753 / FAX
-          02-533-7752 / E-mail jseng@jseng.co.kr <br />
-          업체명: 정석기술연구소 / 사업자등록번호: 126-88-02894 / 대표자: 김종석
+          서울특별시 서초구 서초중앙로24길 11 (우)06604
+          <br className="hidden max-sm:block" />
+          <p className="inline max-sm:hidden"> / </p>
+          TEL 02-533-7753
+          <br className="hidden max-sm:block" />
+          <p className="inline max-sm:hidden"> / </p>
+          FAX 02-533-7752
+          <br className="hidden max-sm:block" />
+          <p className="inline max-sm:hidden"> / </p>
+          E-mail jseng@jseng.co.kr
+          <br />
+          정석기술연구소
+          <br className="hidden max-sm:block" />
+          <p className="inline max-sm:hidden"> / </p>
+          사업자등록번호: 126-88-02894
+          <br className="hidden max-sm:block" />
+          <p className="inline max-sm:hidden"> / </p>
+          대표자: 김종석
         </p>
       </footer>
     </div>
