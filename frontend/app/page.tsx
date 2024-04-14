@@ -3,11 +3,11 @@
 import MyImageSlider from "./ui/my-image-slider";
 import React, { useState, useEffect, useRef } from "react";
 
-function Divider() {
+function MyDivider() {
   return <hr className="ml-10 mr-10 h-0 w-auto bg-[#E4E4E7]"></hr>;
 }
 
-interface EmployeeCardProps {
+interface MyEmployeeCardProps {
   name: string;
   position: string;
   subPosition: string;
@@ -15,13 +15,13 @@ interface EmployeeCardProps {
   imageSrc: string;
 }
 
-function EmployeeCard({
+function MyEmployeeCard({
   name,
   position,
   subPosition,
   script,
   imageSrc,
-}: EmployeeCardProps) {
+}: MyEmployeeCardProps) {
   return (
     <div className="m-2 mb-4 flex w-auto max-w-full flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md">
       <img src={imageSrc} alt="임직원 이미지" className="w-72 rounded-md" />
@@ -91,7 +91,7 @@ export default function Home() {
 
       {/* 회사 소개 섹션 */}
       <section className="bg-white p-10 text-center lg:flex">
-        <h2 className="mb-5 min-w-64 text-3xl text-[#09090b] lg:text-4xl">
+        <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
           회사 소개
         </h2>
         <p className="text-start text-base text-[#52525b] lg:text-xl">
@@ -102,10 +102,10 @@ export default function Home() {
         </p>
       </section>
 
-      <Divider />
+      <MyDivider />
 
       <section className="bg-white p-10 text-center lg:flex">
-        <h2 className="mb-5 min-w-64 text-3xl text-[#09090b] lg:text-4xl">
+        <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
           회사 주요업무
         </h2>
         <div className="flex-row">
@@ -133,23 +133,23 @@ export default function Home() {
         </div>
       </section>
 
-      <Divider />
+      <MyDivider />
 
-      <section className="h-auto w-auto p-10">
+      <section className="h-auto w-auto p-3 lg:p-10">
         <img
           src="/image_organization_chart.png"
-          alt="배너"
+          alt="조직도"
           className="m-auto w-full max-w-5xl"
         />
       </section>
 
-      <Divider />
+      <MyDivider />
       <section className="bg-white p-10 text-center lg:flex">
-        <h2 className="mb-5 min-w-64 text-3xl text-[#09090b] lg:text-4xl">
+        <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
           임직원 현황
         </h2>
         <div className="relative flex flex-wrap justify-evenly">
-          {EmployeeCard({
+          {MyEmployeeCard({
             name: "김종석",
             position: "대표이사",
             subPosition: "",
@@ -167,7 +167,7 @@ export default function Home() {
             ],
             imageSrc: "/image_kimjongseok.png",
           })}
-          {EmployeeCard({
+          {MyEmployeeCard({
             name: "이건후",
             position: "이사",
             subPosition: "",
@@ -182,7 +182,7 @@ export default function Home() {
             ],
             imageSrc: "/icon_logo2.png",
           })}
-          {EmployeeCard({
+          {MyEmployeeCard({
             name: "강민주",
             position: "부장",
             subPosition: "연구소 소장",
@@ -194,7 +194,7 @@ export default function Home() {
             ],
             imageSrc: "/icon_logo2.png",
           })}
-          {EmployeeCard({
+          {MyEmployeeCard({
             name: "김도영",
             position: "부장",
             subPosition: "",
@@ -207,7 +207,7 @@ export default function Home() {
             ],
             imageSrc: "/icon_logo2.png",
           })}
-          {EmployeeCard({
+          {MyEmployeeCard({
             name: "김미지",
             position: "대리",
             subPosition: "",
@@ -216,9 +216,9 @@ export default function Home() {
           })}
         </div>
       </section>
-      <Divider></Divider>
+      <MyDivider></MyDivider>
       <section className="bg-white p-10 text-center lg:flex">
-        <h2 className="mb-5 min-w-64 text-3xl text-[#09090b] lg:text-4xl">
+        <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
           주요 실적 현황
         </h2>
       </section>

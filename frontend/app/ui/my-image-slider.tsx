@@ -1,6 +1,6 @@
-import { access } from "fs";
-import React, { useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
+import Image from "next/image";
 interface MyImageSliderProps {
   height: number;
   width: number;
