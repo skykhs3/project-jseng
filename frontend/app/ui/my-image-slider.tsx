@@ -18,8 +18,8 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
     arrows: false,
     accessibility: false,
     adaptiveHeight: true,
-    pausedOnHover: false,
-    pausedOnDotsHover: true,
+    pauseOnHover: false,
+    pauseOnDotsHover: true,
   };
 
   return (
