@@ -14,11 +14,6 @@ const notoSerifKR = Noto_Serif_KR({
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.ttf",
 });
-export const metadata: Metadata = {
-  title: "(주)정석기술연구소",
-  description: "건설분쟁의 기술지원파트너",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
