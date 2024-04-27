@@ -61,9 +61,9 @@ export default function Home() {
     }
 
     const script = document.createElement("script");
-    // const scriptText1 = await getScript();
-    // const scriptText2 = document.createTextNode( script
-    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6tdrlcyvpt`;
+    script.src =
+      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_SERVICE_CLIENT_ID}` ??
+      "";
     script.async = true;
     document.head.appendChild(script);
 
@@ -93,7 +93,6 @@ export default function Home() {
           anchor: new (window as any).naver.maps.Point(11, 35),
         },
       };
-
       // 마커 추가
       var marker = new (window as any).naver.maps.Marker(markerOptions);
     };
