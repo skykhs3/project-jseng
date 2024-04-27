@@ -60,6 +60,42 @@ export default function Home() {
       observer.observe(elementRef.current);
     }
 
+    getScript();
+    const script = document.createElement("script");
+    // const scriptText1 = await getScript();
+    // const scriptText2 = document.createTextNode( script
+    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6tdrlcyvpt`;
+    script.async = true;
+    document.head.appendChild(script);
+
+    // 스크립트가 로드된 후에 실행될 함수 정의
+    script.onload = () => {
+      // 지도 옵션 설정
+      const mapOptions = {
+        center: new window.naver.maps.LatLng(37.4940094, 127.014925),
+        zoom: 17,
+      };
+
+      // 지도 생성
+      const map = new window.naver.maps.Map("naver-map", mapOptions);
+
+      // 마커 생성
+      var position = new window.naver.maps.LatLng(37.494894, 127.014925);
+      var markerOptions = {
+        position: position,
+        map: map,
+        icon: {
+          url: "/icon_company_marker.png",
+          size: new window.naver.maps.Size(22, 35),
+          origin: new window.naver.maps.Point(0, 0),
+          anchor: new window.naver.maps.Point(11, 35),
+        },
+      };
+
+      // 마커 추가
+      var marker = new window.naver.maps.Marker(markerOptions);
+    };
+
     // 컴포넌트 언마운트 시 관찰 종료
     return () => {
       observer.disconnect();
@@ -220,13 +256,25 @@ export default function Home() {
             })}
           </div>
         </section>
+
         <MyDivider></MyDivider>
+
         <section className="bg-white p-10 text-center lg:flex">
           <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
             주요 실적 현황
           </h2>
         </section>
+
+        <MyDivider></MyDivider>
+
+        <section className="bg-white p-10 text-center lg:flex">
+          <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
+            찾아오시는 길
+          </h2>
+          <div id="naver-map" className="h-[500px] w-full bg-white"></div>
+        </section>
       </main>
+
       {/* 푸터 */}
       <footer className="bg-white p-4 text-center text-slate-700">
         <p className="text-sm">
