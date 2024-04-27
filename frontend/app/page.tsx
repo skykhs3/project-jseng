@@ -60,7 +60,6 @@ export default function Home() {
       observer.observe(elementRef.current);
     }
 
-    getScript();
     const script = document.createElement("script");
     // const scriptText1 = await getScript();
     // const scriptText2 = document.createTextNode( script
