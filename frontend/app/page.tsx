@@ -71,28 +71,31 @@ export default function Home() {
     script.onload = () => {
       // 지도 옵션 설정
       const mapOptions = {
-        center: new window.naver.maps.LatLng(37.4940094, 127.014925),
+        center: new (window as any).naver.maps.LatLng(37.4940094, 127.014925),
         zoom: 17,
       };
 
       // 지도 생성
-      const map = new window.naver.maps.Map("naver-map", mapOptions);
+      const map = new (window as any).naver.maps.Map("naver-map", mapOptions);
 
       // 마커 생성
-      var position = new window.naver.maps.LatLng(37.494894, 127.014925);
+      var position = new (window as any).naver.maps.LatLng(
+        37.494894,
+        127.014925,
+      );
       var markerOptions = {
         position: position,
         map: map,
         icon: {
           url: "/icon_company_marker.png",
-          size: new window.naver.maps.Size(22, 35),
-          origin: new window.naver.maps.Point(0, 0),
-          anchor: new window.naver.maps.Point(11, 35),
+          size: new (window as any).naver.maps.Size(22, 35),
+          origin: new (window as any).naver.maps.Point(0, 0),
+          anchor: new (window as any).naver.maps.Point(11, 35),
         },
       };
 
       // 마커 추가
-      var marker = new window.naver.maps.Marker(markerOptions);
+      var marker = new (window as any).naver.maps.Marker(markerOptions);
     };
 
     // 컴포넌트 언마운트 시 관찰 종료
