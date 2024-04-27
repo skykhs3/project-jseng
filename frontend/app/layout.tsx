@@ -12,7 +12,7 @@ const notoSerifKR = Noto_Serif_KR({
   subsets: ["latin"],
 });
 const pretendard = localFont({
-  src: "./fonts/PretendardVariable.ttf",
+  src: "./fonts/PretendardVariable.woff2",
 });
 export default function RootLayout({
   children,
