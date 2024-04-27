@@ -1,43 +1,8 @@
 "use client";
 
 import MyImageSlider from "./ui/my-image-slider";
-import React, { useState, useEffect, useRef } from "react";
-
-function MyDivider() {
-  return <hr className="ml-10 mr-10 h-0 w-auto bg-[#E4E4E7]"></hr>;
-}
-
-interface MyEmployeeCardProps {
-  name: string;
-  position: string;
-  subPosition: string;
-  script: string[];
-  imageSrc: string;
-}
-
-function MyEmployeeCard({
-  name,
-  position,
-  subPosition,
-  script,
-  imageSrc,
-}: MyEmployeeCardProps) {
-  return (
-    <div className="m-2 mb-4 flex w-auto max-w-full flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md">
-      <img src={imageSrc} alt="임직원 이미지" className="w-72 rounded-md" />
-      <div className="h-4"></div>
-      <h3 className="text-lg font-semibold text-black">{name}</h3>
-      <p className="text-base text-[#09090b]">{position}</p>
-      <p className="text-sm text-[#09090b]">{subPosition}</p>
-      <div className="h-4"></div>
-      <ul className="w-72 max-w-[100%] text-sm text-[#52525b]">
-        {script.map((s, idx) => (
-          <li key={idx}>{s}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { BsBuilding } from "react-icons/bs";
 
 export default function Home() {
   const [height, setHeight] = useState(0);
@@ -299,6 +264,42 @@ export default function Home() {
           대표자: 김종석
         </p>
       </footer>
+    </div>
+  );
+}
+
+function MyDivider() {
+  return <hr className="ml-10 mr-10 h-0 w-auto bg-[#E4E4E7]"></hr>;
+}
+
+interface MyEmployeeCardProps {
+  name: string;
+  position: string;
+  subPosition: string;
+  script: string[];
+  imageSrc: string;
+}
+
+function MyEmployeeCard({
+  name,
+  position,
+  subPosition,
+  script,
+  imageSrc,
+}: MyEmployeeCardProps) {
+  return (
+    <div className="m-2 mb-4 flex w-auto max-w-full flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md">
+      <img src={imageSrc} alt="임직원 이미지" className="w-72 rounded-md" />
+      <div className="h-4"></div>
+      <h3 className="text-lg font-semibold text-black">{name}</h3>
+      <p className="text-base text-[#09090b]">{position}</p>
+      <p className="text-sm text-[#09090b]">{subPosition}</p>
+      <div className="h-4"></div>
+      <ul className="w-72  max-w-[100%] text-sm text-[#52525b]">
+        {script.map((s, idx) => (
+          <li key={idx}>{s}</li>
+        ))}
+      </ul>
     </div>
   );
 }
