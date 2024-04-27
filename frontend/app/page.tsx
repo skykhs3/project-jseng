@@ -9,6 +9,80 @@ export default function Home() {
   const [width, setWidth] = useState(0);
   const elementRef = useRef(null);
 
+  const [naverMap, setNaverMap] = useState(null); // late declaration
+  const [companyLoc, setCompanyLoc] = useState(null); // late declaration
+  const [marker, setNaverMarker] = useState(null);
+
+  const fetchNaverMap = async () => {
+    const script = document.createElement("script");
+    script.src =
+      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_SERVICE_CLIENT_ID}` ??
+      "";
+    script.async = true;
+    document.head.appendChild(script);
+
+    // 스크립트가 로드된 후에 실행될 함수 정의
+    script.onload = () => {
+      const zoomCenterLoc = new (window as any).naver.maps.LatLng(
+        37.4940094,
+        127.014925,
+      );
+
+      // 지도 옵션 설정
+      const mapOptions = {
+        center: zoomCenterLoc,
+        zoom: 17,
+        background: "#ffffff",
+        scrollWheel: false,
+        zoomControl: true,
+        scaleControl: true,
+        // blankTileImage: "./image_organization_chart.png",
+        zoomControlOptions: {
+          //줌 컨트롤의 옵션
+          position: (window as any).naver.maps.Position.TOP_RIGHT,
+        },
+      };
+
+      // 지도 생성
+      const map = new (window as any).naver.maps.Map("naver-map", mapOptions);
+
+      // 마커 생성
+      const position = new (window as any).naver.maps.LatLng(
+        37.494894,
+        127.014925,
+      );
+
+      var pinkMarker = new (window as any).naver.maps.Marker({
+        position: position,
+        map: map,
+        icon: {
+          content: [
+            '<div class = "text-[13px] font-semibold" style = "text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;">',
+            "(주) 정석기술연구소",
+            "</div>",
+          ].join(""),
+          origin: new (window as any).naver.maps.Point(0, 0),
+          anchor: new (window as any).naver.maps.Point(60, 0),
+        },
+      });
+
+      const marker = new (window as any).naver.maps.Marker({
+        position: position,
+        map: map,
+        icon: {
+          url: "/icon_company_marker.png",
+          size: new (window as any).naver.maps.Size(22, 35),
+          origin: new (window as any).naver.maps.Point(0, 0),
+          anchor: new (window as any).naver.maps.Point(11, 35),
+        },
+      });
+
+      // setNaverMarker(marker);
+      setNaverMap(map);
+      setCompanyLoc(zoomCenterLoc);
+    };
+  };
+
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
       for (const entry of entries) {
@@ -25,48 +99,24 @@ export default function Home() {
       observer.observe(elementRef.current);
     }
 
-    const script = document.createElement("script");
-    script.src =
-      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_SERVICE_CLIENT_ID}` ??
-      "";
-    script.async = true;
-    document.head.appendChild(script);
-
-    // 스크립트가 로드된 후에 실행될 함수 정의
-    script.onload = () => {
-      // 지도 옵션 설정
-      const mapOptions = {
-        center: new (window as any).naver.maps.LatLng(37.4940094, 127.014925),
-        zoom: 17,
-      };
-
-      // 지도 생성
-      const map = new (window as any).naver.maps.Map("naver-map", mapOptions);
-
-      // 마커 생성
-      var position = new (window as any).naver.maps.LatLng(
-        37.494894,
-        127.014925,
-      );
-      var markerOptions = {
-        position: position,
-        map: map,
-        icon: {
-          url: "/icon_company_marker.png",
-          size: new (window as any).naver.maps.Size(22, 35),
-          origin: new (window as any).naver.maps.Point(0, 0),
-          anchor: new (window as any).naver.maps.Point(11, 35),
-        },
-      };
-      // 마커 추가
-      var marker = new (window as any).naver.maps.Marker(markerOptions);
-    };
+    fetchNaverMap();
 
     // 컴포넌트 언마운트 시 관찰 종료
     return () => {
       observer.disconnect();
     };
   }, []);
+
+  const handleMapOriginPosition = useCallback(() => {
+    if (naverMap && companyLoc) {
+      (naverMap as any).setZoom(17);
+      (naverMap as any).panTo(companyLoc);
+
+      console.log("지도 중심 위치가 설정되었습니다.");
+    } else {
+      console.log("naverMap 또는 companyLoc가 초기화되지 않았습니다.");
+    }
+  }, [naverMap, companyLoc]);
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
@@ -237,7 +287,31 @@ export default function Home() {
           <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
             찾아오시는 길
           </h2>
-          <div id="naver-map" className="h-[500px] w-full bg-white"></div>
+
+          <div className="relative h-[500px] w-full ">
+            <div
+              id="naver-map"
+              className="h-full w-full rounded-lg border border-gray-200 bg-white shadow-md "
+            ></div>
+            <button
+              className="absolute right-[55px] top-[11px] z-10 h-[30px] w-[30px] border border-black bg-white"
+              onClick={handleMapOriginPosition}
+            >
+              <BsBuilding className="m-auto h-[25px] w-[25px]" />
+            </button>
+            <div className="absolute bottom-6 w-full">
+              <button
+                className="m-auto h-[40px] w-[180px] rounded-full bg-[#04cd5c] text-base text-white shadow-lg"
+                onClick={() => {
+                  const url = "https://naver.me/xHDN16oO";
+                  var win = window.open(url, "_blank");
+                  win!.focus();
+                }}
+              >
+                네이버 지도에서 보기
+              </button>
+            </div>
+          </div>
         </section>
       </main>
 
