@@ -57,7 +57,7 @@ export default function Home() {
         map: map,
         icon: {
           content: [
-            '<div class = "text-[13px] font-semibold" style = "text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;">',
+            '<div class = "text-[15px] font-semibold" style = "text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;">',
             "(주) 정석기술연구소",
             "</div>",
           ].join(""),
@@ -301,7 +301,7 @@ export default function Home() {
             </button>
             <div className="absolute bottom-6 w-full">
               <button
-                className="m-auto h-[40px] w-[180px] rounded-full bg-[#04cd5c] text-base text-white shadow-lg"
+                className="m-auto h-[40px] w-[180px] rounded-full border border-gray-200 bg-[#04cd5c] text-base text-white shadow-md"
                 onClick={() => {
                   const url = "https://naver.me/xHDN16oO";
                   var win = window.open(url, "_blank");
