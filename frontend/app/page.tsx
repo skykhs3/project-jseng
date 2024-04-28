@@ -2,7 +2,7 @@
 
 import MyImageSlider from "./ui/my-image-slider";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { BsBuilding } from "react-icons/bs";
+import { IoRefreshOutline } from "react-icons/io5";
 
 export default function Home() {
   const [height, setHeight] = useState(0);
@@ -297,7 +297,7 @@ export default function Home() {
               className="absolute right-[55px] top-[11px] z-10 h-[30px] w-[30px] border border-black bg-white"
               onClick={handleMapOriginPosition}
             >
-              <BsBuilding className="m-auto h-[25px] w-[25px]" />
+              <IoRefreshOutline className="m-auto h-[25px] w-[25px]" />
             </button>
             <div className="absolute bottom-6 w-full">
               <button
