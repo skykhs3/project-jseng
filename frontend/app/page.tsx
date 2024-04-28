@@ -1,12 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import MyImageSlider from "./ui/my-image-slider";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { IoRefreshOutline } from "react-icons/io5";
 
 export default function Home() {
-  const [height, setHeight] = useState(0);
-  const [width, setWidth] = useState(0);
+  const [bannerHeight, setBannerHeight] = useState(0);
+  const [bannerWidth, setBannerWidth] = useState(0);
   const elementRef = useRef(null);
 
   const [naverMap, setNaverMap] = useState(null); // late declaration
@@ -89,8 +90,8 @@ export default function Home() {
         // entry.contentRect는 요소의 크기와 위치 정보를 제공
         const { height, width } = entry.contentRect;
         console.log(`Current height:${height}px width1: ${width}px`); // 현재 너비를 콘솔에 출력
-        setHeight(height); // 현재 높이를 상태에 반영
-        setWidth(width); // 현재 너비를 상태에 반영
+        setBannerHeight(height); // 현재 높이를 상태에 반영
+        setBannerWidth(width); // 현재 너비를 상태에 반영
       }
     });
 
@@ -122,7 +123,13 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 섹션 */}
       <header className="flex h-[46px] items-center justify-center bg-white ">
-        <img className="h-[36px]" src="/icon_logo.png" alt="로고"></img>
+        <Image
+          className="h-[36px]"
+          width={36}
+          height={36}
+          src="/icon_logo.png"
+          alt="로고"
+        ></Image>
         <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
       </header>
       <main>
@@ -132,17 +139,17 @@ export default function Home() {
         >
           <div className="absolute h-full w-full">
             {/* <div className="absolute h-full w-full bg-black opacity-50"></div> */}
-            <img
-              src="image_banner.jpg"
+            <Image
+              src="/image_banner.jpg"
               alt="배너"
-              style={{
-                width: "100%",
-                height: `${height}px`,
-                objectFit: "cover",
-              }}
+              height={1000}
+              width={1000}
+              className="h-full w-full object-cover"
             />
           </div>
-          <MyImageSlider height={height} width={width} />
+          {bannerHeight != 0 && (
+            <MyImageSlider height={bannerHeight} width={bannerWidth} />
+          )}
         </section>
 
         {/* 회사 소개 섹션 */}
@@ -192,9 +199,11 @@ export default function Home() {
         <MyDivider />
 
         <section className="h-auto w-auto p-3 lg:p-10">
-          <img
+          <Image
             src="/image_organization_chart.png"
             alt="조직도"
+            width={2000}
+            height={2000}
             className="m-auto w-full max-w-5xl"
           />
         </section>
@@ -363,7 +372,13 @@ function MyEmployeeCard({
 }: MyEmployeeCardProps) {
   return (
     <div className="m-2 mb-4 flex w-auto max-w-full flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md">
-      <img src={imageSrc} alt="임직원 이미지" className="w-72 rounded-md" />
+      <Image
+        width={72}
+        height={100}
+        src={imageSrc}
+        alt="임직원 이미지"
+        className="w-72 rounded-md"
+      />
       <div className="h-4"></div>
       <h3 className="text-lg font-semibold text-black">{name}</h3>
       <p className="text-base text-[#09090b]">{position}</p>
