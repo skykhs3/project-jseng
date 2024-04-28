@@ -123,13 +123,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 섹션 */}
       <header className="flex h-[46px] items-center justify-center bg-white ">
-        <Image
-          className="h-[36px]"
-          width={36}
-          height={36}
-          src="/icon_logo.png"
-          alt="로고"
-        ></Image>
+        <Image width={36} height={36} src="/icon_logo.png" alt="로고"></Image>
         <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
       </header>
       <main>
