@@ -3,7 +3,6 @@
 import Image from "next/image";
 import MyImageSlider from "./ui/my-image-slider";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { IoRefreshOutline } from "react-icons/io5";
 
 export default function Home() {
   const [bannerHeight, setBannerHeight] = useState(0);
@@ -58,7 +57,7 @@ export default function Home() {
         map: map,
         icon: {
           content: [
-            '<div class = "text-[15px] font-semibold" style = "text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;">',
+            '<div class = "text-[15px] font-semibold text-black" style = "text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;">',
             "(주) 정석기술연구소",
             "</div>",
           ].join(""),
@@ -291,16 +290,22 @@ export default function Home() {
             찾아오시는 길
           </h2>
 
-          <div className="relative h-[500px] w-full ">
+          <div className="relative h-[400px] w-full md:h-[500px] ">
             <div
               id="naver-map"
               className="h-full w-full rounded-lg border border-gray-200 bg-white shadow-md "
             ></div>
             <button
-              className="absolute right-[55px] top-[11px] z-10 h-[30px] w-[30px] border border-black bg-white"
+              className="absolute right-[52px] top-[11px] z-10 h-[30px] w-[30px] border border-black bg-white"
               onClick={handleMapOriginPosition}
             >
-              <IoRefreshOutline className="m-auto h-[25px] w-[25px]" />
+              <Image
+                className="m-auto"
+                src="/icon_refresh.png"
+                width={15}
+                height={15}
+                alt={"새로고침"}
+              />
             </button>
             <div className="absolute bottom-6 w-full">
               <button
