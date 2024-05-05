@@ -1,6 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
 import Image from "next/image";
+import { MAX_BANNER_HEIGHT, MAX_BANNER_WIDTH } from "../constants";
 interface MyImageSliderProps {
   height: number;
   width: number;
@@ -30,8 +31,8 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
             <Image
               src="/image_banner.jpg"
               alt="배너"
-              height={2000}
-              width={2000}
+              height={MAX_BANNER_HEIGHT}
+              width={MAX_BANNER_WIDTH}
               style={{
                 width: "100%",
                 height: `${height}px`,
@@ -62,8 +63,8 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
             <Image
               src="/image_banner2.jpg"
               alt="배너"
-              width={2000}
-              height={2000}
+              width={MAX_BANNER_WIDTH}
+              height={MAX_BANNER_HEIGHT}
               style={{
                 width: "100%",
                 height: `${height}px`,
@@ -94,8 +95,8 @@ const MyImageSlider: React.FC<MyImageSliderProps> = ({ height, width }) => {
             <Image
               src="/image_banner3.jpg"
               alt="배너"
-              width={2000}
-              height={2000}
+              width={MAX_BANNER_WIDTH}
+              height={MAX_BANNER_HEIGHT}
               style={{
                 width: "100%",
                 height: `${height}px`,

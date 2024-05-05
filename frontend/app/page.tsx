@@ -3,6 +3,7 @@
 import Image from "next/image";
 import MyImageSlider from "./ui/my-image-slider";
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { MAX_BANNER_HEIGHT, MAX_BANNER_WIDTH } from "./constants";
 
 export default function Home() {
   const [bannerHeight, setBannerHeight] = useState(0);
@@ -135,8 +136,8 @@ export default function Home() {
             <Image
               src="/image_banner.jpg"
               alt="배너"
-              height={1000}
-              width={1000}
+              height={MAX_BANNER_HEIGHT}
+              width={MAX_BANNER_WIDTH}
               className="h-full w-full object-cover"
             />
           </div>
