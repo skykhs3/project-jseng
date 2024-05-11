@@ -118,7 +118,7 @@ export default function Home() {
   }, [naverMap, companyLoc]);
 
   const renderHeader = () => (
-    <header className="flex h-[46px] items-center justify-center bg-white ">
+    <header className="flex h-[46px] items-center justify-center">
       <Image width={36} height={36} src="/icon_logo.png" alt="로고"></Image>
       <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
     </header>
@@ -146,7 +146,7 @@ export default function Home() {
   );
 
   const render회사소개 = () => (
-    <section className="bg-white p-10 text-center lg:flex">
+    <section className="animate-fadeInUp p-10 text-center lg:flex">
       <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 소개
       </h2>
@@ -160,7 +160,7 @@ export default function Home() {
   );
 
   const render회사주요업무 = () => (
-    <section className="bg-white p-10 text-center lg:flex">
+    <section className="animate-fadeInUp p-10 text-center lg:flex">
       <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 주요업무
       </h2>
@@ -203,7 +203,7 @@ export default function Home() {
   );
 
   const render임직원현황 = () => (
-    <section className="bg-white p-10 text-center lg:flex">
+    <section className="p-10 text-center lg:flex">
       <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
         임직원 현황
       </h2>
@@ -278,7 +278,7 @@ export default function Home() {
   );
 
   const render주요실적현황 = () => (
-    <section className="bg-white p-10 text-center lg:flex">
+    <section className="p-10 text-center lg:flex">
       <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
         주요 실적 현황
       </h2>
@@ -286,7 +286,7 @@ export default function Home() {
   );
 
   const render찾아오시는길 = () => (
-    <section className="bg-white p-10 text-center lg:flex">
+    <section className="p-10 text-center lg:flex">
       <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
         찾아오시는 길
       </h2>
@@ -325,7 +325,7 @@ export default function Home() {
   );
 
   const renderFooter = () => (
-    <footer className="bg-white p-4 text-center text-slate-700">
+    <footer className="p-4 text-center text-slate-700">
       <p className="text-sm">
         서울특별시 서초구 서초중앙로24길 11 (우)06604
         <br className="hidden max-sm:block" />
@@ -350,7 +350,7 @@ export default function Home() {
   );
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col">
       {renderHeader()}
       <main>
         {render배너()}
@@ -361,9 +361,9 @@ export default function Home() {
         {render조직도()}
         <MyDivider />
         {render임직원현황()}
-        <MyDivider></MyDivider>
+        <MyDivider />
         {render주요실적현황()}
-        <MyDivider></MyDivider>
+        <MyDivider />
         {render찾아오시는길()}
       </main>
       {renderFooter()}
@@ -372,7 +372,7 @@ export default function Home() {
 }
 
 function MyDivider() {
-  return <hr className="ml-10 mr-10 h-0 w-auto bg-[#E4E4E7]"></hr>;
+  return <hr className="relative ml-10 mr-10 h-0 w-auto bg-[#E4E4E7]"></hr>;
 }
 
 interface MyEmployeeCardProps {
