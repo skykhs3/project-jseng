@@ -1,3 +1,5 @@
+# fly.io 배포를 위한 Dockerfile
+
 # 사용할 Node.js 버전을 지정하는 베이스 이미지 선택
 FROM node:18-alpine
 
