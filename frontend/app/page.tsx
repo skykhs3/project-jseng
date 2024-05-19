@@ -96,17 +96,17 @@ export default function Home() {
   const initBannerImageAnimation = () => {
     const interval = setInterval(() => {
       setIsVideo1Visible((prev) => {
-        if (prev) {
+        if (prev && video2Ref!.current) {
           video2Ref!.current!.currentTime = 0;
           video2Ref!.current!.play();
-        } else {
+        } else if (!prev && video1Ref!.current) {
           video1Ref!.current!.currentTime = 0;
           video1Ref!.current!.play();
         }
 
         return !prev;
       });
-    }, 10000); // 10초 간격으로 상태를 토글
+    }, 5000); // 10초 간격으로 상태를 토글
 
     return interval;
   };
