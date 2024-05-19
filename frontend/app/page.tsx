@@ -1,18 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import MyImageSlider from "./ui/my-image-slider";
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { MAX_BANNER_HEIGHT, MAX_BANNER_WIDTH } from "./constants";
 
 export default function Home() {
-  const [bannerHeight, setBannerHeight] = useState(0);
-  const [bannerWidth, setBannerWidth] = useState(0);
-  const elementRef = useRef(null);
+  const [isAnimated, setIsAnimated] = useState(false);
+  const [isAnimated2, setIsAnimated2] = useState(false);
+  const [isVideo1Visible, setIsVideo1Visible] = useState(true);
+  const video1Ref = useRef<HTMLVideoElement | null>(null);
+  const video2Ref = useRef<HTMLVideoElement | null>(null);
 
   const [naverMap, setNaverMap] = useState(null); // late declaration
   const [companyLoc, setCompanyLoc] = useState(null); // late declaration
-  const [marker, setNaverMarker] = useState(null);
 
   const initNaverMap = async () => {
     const script = document.createElement("script");
@@ -84,25 +83,42 @@ export default function Home() {
     };
   };
 
+  const initBannerTextAnimation = () => {
+    const timer = setTimeout(() => {
+      setIsAnimated(true);
+    }, 2000);
+    const timer2 = setTimeout(() => {
+      setIsAnimated2(true);
+    }, 3000);
+    return [timer, timer2];
+  };
+
+  const initBannerImageAnimation = () => {
+    const interval = setInterval(() => {
+      setIsVideo1Visible((prev) => {
+        if (prev) {
+          video2Ref!.current!.currentTime = 0;
+          video2Ref!.current!.play();
+        } else {
+          video1Ref!.current!.currentTime = 0;
+          video1Ref!.current!.play();
+        }
+
+        return !prev;
+      });
+    }, 10000); // 10초 간격으로 상태를 토글
+
+    return interval;
+  };
+
   useEffect(() => {
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        const { height, width } = entry.contentRect;
-        console.log(`Current height:${height}px width1: ${width}px`); // 현재 너비를 콘솔에 출력
-        setBannerHeight(height); // 현재 높이를 상태에 반영
-        setBannerWidth(width); // 현재 너비를 상태에 반영
-      }
-    });
-    // elementRef.current가 존재하는 경우 해당 요소를 관찰 시작
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
     initNaverMap();
+    const timers = [...initBannerTextAnimation()];
+    const interval = initBannerImageAnimation();
 
-    // 컴포넌트 언마운트 시 관찰 종료
     return () => {
-      observer.disconnect();
+      timers.forEach((time) => clearTimeout(time));
+      clearInterval(interval);
     };
   }, []);
 
@@ -117,33 +133,81 @@ export default function Home() {
     }
   }, [naverMap, companyLoc]);
 
-  const renderHeader = () => (
-    <header className="flex h-[46px] items-center justify-center">
-      <Image width={36} height={36} src="/icon_logo.png" alt="로고"></Image>
-      <h1 className="text-xl font-bold text-black ">(주)정석기술연구소</h1>
-    </header>
-  );
+  const renderHeader = () => {
+    const textShadowStyle = {
+      textShadow: "1px 1px 1px rgba(255, 255, 255, 1)",
+    };
 
-  const render배너 = () => (
-    <section
-      className="relative h-[270px] md:h-[320px] lg:h-[495px]"
-      ref={elementRef}
-    >
-      <div className="absolute h-full w-full">
-        {/* <div className="absolute h-full w-full bg-black opacity-50"></div> */}
-        <Image
-          src="/image_banner.jpg"
-          alt="배너"
-          height={MAX_BANNER_HEIGHT}
-          width={MAX_BANNER_WIDTH}
-          className="h-full w-full object-cover"
-        />
-      </div>
-      {bannerHeight != 0 && (
-        <MyImageSlider height={bannerHeight} width={bannerWidth} />
-      )}
-    </section>
-  );
+    return (
+      <header className="fixed top-0 z-10 flex w-full flex-col">
+        <div className="flex h-[80px] items-center justify-center">
+          <Image
+            width={36}
+            height={36}
+            src="/icon_logo.png"
+            alt="로고"
+            className="lg:h-[48px] lg:w-[48px]"
+          />
+
+          <h1
+            className="text-xl font-bold text-black lg:text-2xl"
+            style={textShadowStyle}
+          >
+            (주)정석기술연구소
+          </h1>
+        </div>
+      </header>
+    );
+  };
+
+  const render배너 = () => {
+    const textShadowStyle = {
+      textShadow: "3px 3px 4px rgba(0, 0, 0, 0.7)",
+    };
+    return (
+      <section className="relative h-dvh">
+        <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-6 lg:p-10">
+          <p
+            className={`text-2xl font-light text-white md:text-2xl lg:text-4xl ${isAnimated ? "animate-fadeInUp" : "collapse"}`}
+            style={textShadowStyle}
+          >
+            건설 분쟁 컨설팅 전문
+          </p>
+          <div className="h-6"></div>
+          <p
+            className={`text-[38px] font-light text-white md:text-[50px] lg:text-[70px] ${isAnimated2 ? "animate-fadeInUp" : "collapse"}`}
+            style={textShadowStyle}
+          >
+            건축시공기술사와
+            <br />
+            건축설계사가
+            <br />
+            함께합니다.
+          </p>
+        </div>
+        <div className="relative flex h-full w-full justify-center">
+          <video
+            ref={video1Ref}
+            autoPlay
+            muted
+            loop
+            className={`animate-withBannerWidthExpand absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-100" : "opacity-0"}`}
+          >
+            <source src="/video_banner.mp4" type="video/mp4" />
+          </video>
+          <video
+            ref={video2Ref}
+            autoPlay
+            muted
+            loop
+            className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-0" : "opacity-100"}`}
+          >
+            <source src="/video_banner2.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
+    );
+  };
 
   const render회사소개 = () => (
     <section className="animate-fadeInUp p-10 text-center lg:flex">
