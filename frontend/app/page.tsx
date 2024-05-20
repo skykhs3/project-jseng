@@ -112,10 +112,40 @@ export default function Home() {
     return interval;
   };
 
+  const isScrolling = useRef(false);
+  const handleScroll = (e: any) => {
+    if (isScrolling.current) {
+      e.preventDefault();
+      return;
+    }
+    if (
+      e.deltaY > 0 &&
+      secondPageRef.current &&
+      window.scrollY < secondPageRef.current.offsetTop
+    ) {
+      isScrolling.current = true;
+      console.log(window.scrollY);
+      e.preventDefault();
+      setPageToSecondPage();
+    }
+    if (
+      e.deltaY < 0 &&
+      secondPageRef.current &&
+      window.scrollY < secondPageRef.current.offsetTop
+    ) {
+      isScrolling.current = true;
+      console.log(window.scrollY);
+      e.preventDefault();
+      setPageToFirstPage();
+    }
+  };
+
   useEffect(() => {
     initNaverMap();
     const timers = [...initBannerTextAnimation()];
     const interval = initBannerImageAnimation();
+
+    window.addEventListener("wheel", handleScroll, { passive: false });
 
     return () => {
       timers.forEach((time) => clearTimeout(time));
@@ -134,12 +164,27 @@ export default function Home() {
     }
   }, [naverMap, companyLoc]);
 
+  const setPageToFirstPage = () => {
+    console.log("go");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 500);
+  };
+
   const setPageToSecondPage = () => {
     if (secondPageRef.current) {
+      console.log("go");
       window.scrollTo({
         top: secondPageRef.current.offsetTop,
         behavior: "smooth",
       });
+      setTimeout(() => {
+        isScrolling.current = false;
+      }, 500);
     }
   };
 
