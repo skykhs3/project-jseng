@@ -220,9 +220,9 @@ export default function Home() {
       textShadow: "3px 3px 4px rgba(0, 0, 0, 0.7)",
     };
     return (
-      <section className="relative h-dvh">
+      <section className="relative h-svh">
         <button
-          className="left animate-withArrowSlideUpDown absolute bottom-10 left-6 z-10 lg:left-10"
+          className="left absolute bottom-10 left-6 z-10 animate-withArrowSlideUpDown lg:left-10"
           onClick={setPageToSecondPage}
         >
           <Image
