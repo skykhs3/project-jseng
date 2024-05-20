@@ -98,11 +98,11 @@ export default function Home() {
     const interval = setInterval(() => {
       setIsVideo1Visible((prev) => {
         if (prev && video2Ref!.current) {
-          video2Ref!.current!.load();
-          video2Ref!.current!.play();
+          video2Ref!.current!.currentTime = 0;
+          // video2Ref!.current!.play();
         } else if (!prev && video1Ref!.current) {
-          video1Ref!.current!.load();
-          video1Ref!.current!.play();
+          video1Ref!.current!.currentTime = 0;
+          // video1Ref!.current!.play();
         }
 
         return !prev;
