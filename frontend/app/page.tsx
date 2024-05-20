@@ -176,13 +176,17 @@ export default function Home() {
     };
     return (
       <section className="relative h-dvh">
-        <Image
-          src="/icon_down_arrow.png"
-          alt="아래 방향 화살표"
-          width={40}
-          height={40}
+        <button
           className="left animate-withArrowSlideUpDown absolute bottom-10 left-6 z-10 lg:left-10"
-        />
+          onClick={setPageToSecondPage}
+        >
+          <Image
+            src="/icon_down_arrow.png"
+            alt="아래 방향 화살표"
+            width={40}
+            height={40}
+          />
+        </button>
         <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-6 lg:p-10">
           <p
             className={`text-2xl font-light text-white md:text-2xl lg:text-4xl ${isAnimated ? "animate-fadeInUp" : "collapse"}`}
