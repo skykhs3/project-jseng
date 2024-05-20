@@ -2,7 +2,8 @@ name: Frontend Deploy
 on:
   push:
     branches:
-      - deployment    # change to main if needed
+      - main   
+      # change to main if needed
 jobs:
   deploy:
     name: Deploy app
