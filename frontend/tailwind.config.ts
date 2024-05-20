@@ -17,11 +17,17 @@ const config: Config = {
           '0%': { width: '0%' },
           '100%': { width: '100%' },
         },
+        kfSlideUpDown: {
+          '0%': { transform: "translateY(0)" },
+          '50%': { transform: "translateY(-20px)" },
+          '100%': { transform: "translateY(0)" },
+        }
       }
     },
     animation: {
       fadeInUp: 'kfFadeInUp 0.8s ease-out',
       withBannerWidthExpand: 'kfBannerWidthExpand 2s ease-in-out forwards',
+      withArrowSlideUpDown: 'kfSlideUpDown 2s infinite ease-in-out'
     },
   },
   plugins: [],

@@ -9,6 +9,7 @@ export default function Home() {
   const [isVideo1Visible, setIsVideo1Visible] = useState(true);
   const video1Ref = useRef<HTMLVideoElement | null>(null);
   const video2Ref = useRef<HTMLVideoElement | null>(null);
+  const secondPageRef = useRef<HTMLDivElement | null>(null);
 
   const [naverMap, setNaverMap] = useState(null); // late declaration
   const [companyLoc, setCompanyLoc] = useState(null); // late declaration
@@ -106,7 +107,7 @@ export default function Home() {
 
         return !prev;
       });
-    }, 5000); // 10초 간격으로 상태를 토글
+    }, 10000); // 10초 간격으로 상태를 토글
 
     return interval;
   };
@@ -133,13 +134,22 @@ export default function Home() {
     }
   }, [naverMap, companyLoc]);
 
+  const setPageToSecondPage = () => {
+    if (secondPageRef.current) {
+      window.scrollTo({
+        top: secondPageRef.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const renderHeader = () => {
     const textShadowStyle = {
       textShadow: "1px 1px 1px rgba(255, 255, 255, 1)",
     };
 
     return (
-      <header className="fixed top-0 z-10 flex w-full flex-col">
+      <header className="absolute top-0 z-10 flex w-full flex-col">
         <div className="flex h-[80px] items-center justify-center">
           <Image
             width={36}
@@ -166,6 +176,13 @@ export default function Home() {
     };
     return (
       <section className="relative h-dvh">
+        <Image
+          src="/icon_down_arrow.png"
+          alt="아래 방향 화살표"
+          width={40}
+          height={40}
+          className="left animate-withArrowSlideUpDown absolute bottom-10 left-6 z-10 lg:left-10"
+        />
         <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-6 lg:p-10">
           <p
             className={`text-2xl font-light text-white md:text-2xl lg:text-4xl ${isAnimated ? "animate-fadeInUp" : "collapse"}`}
@@ -180,7 +197,7 @@ export default function Home() {
           >
             건축시공기술사와
             <br />
-            건축설계사가
+            건축사가
             <br />
             함께합니다.
           </p>
@@ -188,18 +205,20 @@ export default function Home() {
         <div className="relative flex h-full w-full justify-center">
           <video
             ref={video1Ref}
-            autoPlay
-            muted
-            loop
-            className={`animate-withBannerWidthExpand absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-100" : "opacity-0"}`}
+            autoPlay={true}
+            playsInline={true}
+            muted={true}
+            loop={true}
+            className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-100" : "opacity-0"}`}
           >
             <source src="/video_banner.mp4" type="video/mp4" />
           </video>
           <video
             ref={video2Ref}
-            autoPlay
-            muted
-            loop
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            playsInline={true}
             className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-0" : "opacity-100"}`}
           >
             <source src="/video_banner2.mp4" type="video/mp4" />
@@ -210,7 +229,10 @@ export default function Home() {
   };
 
   const render회사소개 = () => (
-    <section className="animate-fadeInUp p-10 text-center lg:flex">
+    <section
+      className="animate-fadeInUp p-10 text-center lg:flex"
+      ref={secondPageRef}
+    >
       <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 소개
       </h2>
