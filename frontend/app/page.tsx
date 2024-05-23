@@ -221,17 +221,19 @@ export default function Home() {
     };
     return (
       <section className="relative h-svh">
-        <button
-          className="left absolute bottom-10 left-6 z-10 animate-withArrowSlideUpDown lg:left-10"
-          onClick={setPageToSecondPage}
-        >
-          <Image
-            src="/icon_down_arrow.png"
-            alt="아래 방향 화살표"
-            width={40}
-            height={40}
-          />
-        </button>
+        <div className="absolute bottom-0 flex w-full justify-center">
+          <button
+            className="absolute bottom-10 z-10 mx-auto animate-withArrowSlideUpDown"
+            onClick={setPageToSecondPage}
+          >
+            <Image
+              src="/icon_down_arrow.png"
+              alt="아래 방향 화살표"
+              width={40}
+              height={40}
+            />
+          </button>
+        </div>
         <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-6 lg:p-10">
           <p
             className={`text-2xl font-light text-white md:text-2xl lg:text-4xl ${isAnimated ? "animate-fadeInUp" : "collapse"}`}
@@ -260,7 +262,7 @@ export default function Home() {
             loop={true}
             className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-100" : "opacity-0"}`}
           >
-            <source src="/video_banner.mp4" type="video/mp4" />
+            <source src="/video_banner1_small.mp4" type="video/mp4" />
           </video>
           <video
             ref={video2Ref}
@@ -270,7 +272,7 @@ export default function Home() {
             playsInline={true}
             className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-0" : "opacity-100"}`}
           >
-            <source src="/video_banner2.mp4" type="video/mp4" />
+            <source src="/video_banner2_small.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
