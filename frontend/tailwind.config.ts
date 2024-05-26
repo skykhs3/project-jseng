@@ -22,7 +22,7 @@ const config: Config = {
           '50%': { transform: "translateY(-20px)" },
           '100%': { transform: "translateY(0)" },
         }
-      }
+      },
     },
     animation: {
       fadeInUp: 'kfFadeInUp 0.8s ease-out',

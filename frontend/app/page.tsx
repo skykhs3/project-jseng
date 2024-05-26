@@ -14,6 +14,11 @@ export default function Home() {
   const bannerVideo2Ref = useRef<HTMLVideoElement | null>(null);
 
   const secondPageRef = useRef<HTMLDivElement | null>(null);
+  const [backgroundImgCssStyle, setBackgroundImgCssStyle] = useState<
+    "absolute" | "fixed"
+  >("absolute");
+
+  const [headerCssStyle, setHeaderCssStyle] = useState<string>("");
 
   // naver map
   const [naverMap, setNaverMap] = useState(null); // late declaration
@@ -118,7 +123,7 @@ export default function Home() {
   };
 
   const isScrolling = useRef(false);
-  const handleScroll = (e: any) => {
+  const handleWheelEvent = (e: any) => {
     if (isScrolling.current) {
       e.preventDefault();
       return;
@@ -134,12 +139,30 @@ export default function Home() {
     }
   };
 
+  const handleScrollEvent = (e: any) => {
+    if (secondPageRef.current) {
+      const isScrollPositionReachSecondPageTop =
+        0 >= secondPageRef.current.getBoundingClientRect().top;
+      if (isScrollPositionReachSecondPageTop) {
+        setBackgroundImgCssStyle("fixed");
+        // setHeaderCssStyle("bg-white shadow-md");
+        setHeaderCssStyle(
+          "bg-opacity-90 backdrop-blur-lg backdrop-filter shadow-lg",
+        );
+      } else {
+        setBackgroundImgCssStyle("absolute");
+        setHeaderCssStyle("");
+      }
+    }
+  };
+
   useEffect(() => {
     initNaverMap();
     const timers = [...initBannerTextAnimation()];
     const interval = initBannerImageAnimation();
 
-    window.addEventListener("wheel", handleScroll, { passive: false });
+    window.addEventListener("wheel", handleWheelEvent, { passive: false });
+    window.addEventListener("scroll", handleScrollEvent, { passive: false });
 
     return () => {
       timers.forEach((time) => clearTimeout(time));
@@ -184,8 +207,10 @@ export default function Home() {
     };
 
     return (
-      <header className="absolute top-0 z-10 flex w-full flex-col">
-        <div className="flex h-[80px] items-center justify-center">
+      <header
+        className={`fixed top-0 z-10 flex w-full flex-col ${headerCssStyle}`}
+      >
+        <div className="flex h-[60px] items-center justify-center lg:h-[80px]">
           <Image
             width={36}
             height={36}
@@ -224,23 +249,23 @@ export default function Home() {
             />
           </button>
         </div>
-        <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-6 lg:p-10">
+        <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-10 md:p-16">
           <p
-            className={`text-2xl font-light text-white md:text-2xl lg:text-4xl ${isBannerText1Animated ? "animate-fadeInUp" : "collapse"}`}
+            className={`text-2xl font-light text-white md:text-3xl lg:text-4xl ${isBannerText1Animated ? "animate-fadeInUp" : "collapse"}`}
             style={textShadowStyle}
           >
             건설 분쟁 컨설팅 전문
           </p>
-          <div className="h-6"></div>
+          <div className="h-6 md:h-7 lg:h-8"></div>
           <p
             className={`text-[38px] font-light text-white md:text-[50px] lg:text-[70px] ${isBannerTex2Animated ? "animate-fadeInUp" : "collapse"}`}
             style={textShadowStyle}
           >
-            건축시공기술사와
+            건축시공기술사
             <br />
             건축사가
             <br />
-            함께합니다.
+            함께합니다
           </p>
         </div>
         <div className="relative flex h-full w-full justify-center">
@@ -269,15 +294,25 @@ export default function Home() {
     );
   };
 
+  const renderBackground = () => (
+    <Image
+      src={"/image_background.webp"}
+      width={2000}
+      height={1000}
+      alt={"배경화면"}
+      className={`${backgroundImgCssStyle} left-0 top-0 -z-10 h-lvh w-full object-cover`}
+    />
+  );
+
   const render회사소개 = () => (
     <section
-      className="animate-fadeInUp p-10 text-center lg:flex"
+      className="animate-fadeInUp p-10 pt-24 text-center md:p-16 md:pt-32 lg:flex"
       ref={secondPageRef}
     >
-      <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
+      <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 소개
       </h2>
-      <p className="text-start text-base text-[#52525b] lg:text-xl">
+      <p className="text-start text-xl text-[#52525b] lg:text-2xl">
         정석 기술 연구소는 건축, 토목, 엔지니어링, 건축물 하자진단, 안전진단,
         계측, 구조설계 및 법원 감정평가 등 다양한 건설 관련 서비스를 제공합니다.
         고객의 요구에 맞춘 최고의 솔루션을 제공하여 안전하고 효율적인 건축
@@ -287,31 +322,31 @@ export default function Home() {
   );
 
   const render회사주요업무 = () => (
-    <section className="animate-fadeInUp p-10 text-center lg:flex">
-      <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
+    <section className="animate-fadeInUp p-10 text-center md:p-16 lg:flex">
+      <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 주요업무
       </h2>
       <div className="flex-row">
-        <div className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-          건설분쟁·하자소송 기술(송무)지원 업무
+        <div className="m-auto pb-4 text-start text-xl text-[#52525b] lg:pb-4 lg:text-2xl ">
+          - 건설분쟁·하자소송 기술(송무)지원 업무
         </div>
-        <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-          준공도서 사전검토 용역 업무
+        <p className="m-auto pb-4 text-start text-xl text-[#52525b] lg:pb-4 lg:text-2xl ">
+          - 준공도서 사전검토 용역 업무
         </p>
-        <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-          법원 공사비 감정·분석 및 컨설팅 업무
+        <p className="m-auto pb-4 text-start text-xl text-[#52525b] lg:pb-4 lg:text-2xl ">
+          - 법원 공사비 감정·분석 및 컨설팅 업무
         </p>
-        <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-          하자조사 타당성 검토·분석 업무
+        <p className="m-auto pb-4 text-start text-xl text-[#52525b] lg:pb-4 lg:text-2xl ">
+          - 하자조사 타당성 검토·분석 업무
         </p>
-        <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-          준공시 하자 민원에 대한 컨설팅
+        <p className="m-auto pb-4 text-start text-xl text-[#52525b] lg:pb-4 lg:text-2xl ">
+          - 준공시 하자 민원에 대한 컨설팅
         </p>
-        <p className="m-auto pb-2 text-center text-base text-[#52525b] md:text-xl lg:pb-4 lg:text-start lg:text-3xl ">
-          협력업체 공사중단시 대응방안 자문
+        <p className="m-auto pb-4 text-start text-xl text-[#52525b] lg:pb-4 lg:text-2xl ">
+          - 협력업체 공사중단시 대응방안 자문
         </p>
-        <p className="text-center text-base text-[#52525b] md:text-xl lg:text-start lg:text-3xl">
-          건설기술인 직무 교육(하자리스크 최소화)
+        <p className="m-auto text-start text-xl text-[#52525b] lg:text-2xl ">
+          - 건설기술인 직무 교육(하자리스크 최소화)
         </p>
       </div>
     </section>
@@ -330,11 +365,11 @@ export default function Home() {
   );
 
   const render임직원현황 = () => (
-    <section className="p-10 text-center lg:flex">
-      <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
+    <section className="p-10 text-center md:p-16 lg:flex">
+      <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         임직원 현황
       </h2>
-      <div className="relative flex flex-wrap justify-evenly">
+      <div className="relative grid flex-grow grid-cols-1 justify-evenly gap-4 min-[500px]:grid-cols-2 lg:gap-6 xl:grid-cols-3">
         {MyEmployeeCard({
           name: "김종석",
           position: "대표이사",
@@ -351,7 +386,7 @@ export default function Home() {
             "광운대 법무대학원 27대 원우회회장",
             "건설중재 전문가 아카데미 제 20기",
           ],
-          imageSrc: "/image_kimjongseok.png",
+          imageSrc: "/image_kimjongseok.jpg",
         })}
         {MyEmployeeCard({
           name: "이건후",
@@ -405,23 +440,23 @@ export default function Home() {
   );
 
   const render주요실적현황 = () => (
-    <section className="p-10 text-center lg:flex">
-      <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
+    <section className="p-10 text-center md:p-16 lg:flex">
+      <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         주요 실적 현황
       </h2>
     </section>
   );
 
   const render찾아오시는길 = () => (
-    <section className="p-10 text-center lg:flex">
-      <h2 className="mb-5 text-3xl text-[#09090b] lg:min-w-80 lg:text-4xl">
+    <section className="p-10 text-center md:p-16 lg:flex">
+      <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         찾아오시는 길
       </h2>
 
       <div className="relative h-[400px] w-full md:h-[500px] ">
         <div
           id="naver-map"
-          className="h-full w-full rounded-lg border border-gray-200 bg-white shadow-md "
+          className="h-full w-full border border-gray-200 bg-white shadow-lg "
         ></div>
         <button
           className="absolute right-[52px] top-[11px] z-10 h-[30px] w-[30px] border border-black bg-white"
@@ -454,16 +489,16 @@ export default function Home() {
   const renderFooter = () => (
     <footer className="p-4 text-center text-slate-700">
       <p className="text-sm">
-        서울특별시 서초구 서초중앙로24길 11 (우)06604
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
-        TEL 02-533-7753
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
+        서울특별시 서초구 서초중앙로24길 11 요셉빌딩 7F (우)06604
+        <br className="hidden max-[800px]:block" />
+        <span className="inline max-[800px]:hidden"> / </span>
+        <a href={"email:02-533-7753"}>TEL 02-533-7753 / </a>
+        {/* <br className="hidden max-sm:block" />
+        <span className="inline max-sm:hidden"> / </span> */}
         FAX 02-533-7752
         <br className="hidden max-sm:block" />
         <span className="inline max-sm:hidden"> / </span>
-        E-mail jseng@jseng.co.kr
+        <a href={"mailto:jseng@jseng.co.kr"}>E-mail jseng@jseng.co.kr</a>
         <br />
         정석기술연구소
         <br className="hidden max-sm:block" />
@@ -482,14 +517,6 @@ export default function Home() {
       <main>
         {renderBanner()}
         <div className="relative">
-          <Image
-            src={"/image_bg.webp"}
-            width={2000}
-            height={1000}
-            alt={"배경화면"}
-            className="absolute left-0 top-0 -z-10 h-lvh w-full object-cover"
-          ></Image>
-
           {render회사소개()}
           <MyDivider />
           {render회사주요업무()}
@@ -497,8 +524,8 @@ export default function Home() {
           {render조직도()}
           <MyDivider />
           {render임직원현황()}
-          <MyDivider />
-          {render주요실적현황()}
+          {/* <MyDivider />
+          {render주요실적현황()} */}
           <MyDivider />
           {render찾아오시는길()}
         </div>
