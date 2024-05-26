@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import MyEmployeeCard from "./ui/my_employee_card";
 import MyDivider from "./ui/my_divider";
+import { useInView } from "react-intersection-observer";
 
 export default function Home() {
   const [isBannerText1Animated, setIsBannerText1Animated] = useState(false);
@@ -17,8 +18,12 @@ export default function Home() {
   const [backgroundImgCssStyle, setBackgroundImgCssStyle] = useState<
     "absolute" | "fixed"
   >("absolute");
-
   const [headerCssStyle, setHeaderCssStyle] = useState<string>("");
+
+  const { ref: ref1, inView: inView1 } = useInView({
+    triggerOnce: true,
+    threshold: 1,
+  });
 
   // naver map
   const [naverMap, setNaverMap] = useState(null); // late declaration
@@ -304,25 +309,35 @@ export default function Home() {
     />
   );
 
-  const render회사소개 = () => (
-    <section
-      className="animate-fadeInUp p-10 pt-24 text-center md:p-16 md:pt-32 lg:flex"
-      ref={secondPageRef}
-    >
-      <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
-        회사 소개
-      </h2>
-      <p className="text-start text-xl text-[#52525b] lg:text-2xl">
-        정석 기술 연구소는 건축, 토목, 엔지니어링, 건축물 하자진단, 안전진단,
-        계측, 구조설계 및 법원 감정평가 등 다양한 건설 관련 서비스를 제공합니다.
-        고객의 요구에 맞춘 최고의 솔루션을 제공하여 안전하고 효율적인 건축
-        환경을 구축하는 데 앞장서고 있습니다.
-      </p>
-    </section>
-  );
+  const render회사소개 = () => {
+    return (
+      <section
+        className={` p-10 pt-24 text-center md:p-16 md:pt-32 lg:flex`}
+        ref={secondPageRef}
+      >
+        <div className={`${inView1 ? "animate-fadeInUp" : ""}`}>
+          <div ref={ref1}></div>
+          <h2
+            className={`mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl`}
+          >
+            회사 소개
+          </h2>
+          <p className="text-start text-xl text-[#52525b] lg:text-2xl">
+            정석 기술 연구소는 건축, 토목, 엔지니어링, 건축물 하자진단,
+            안전진단, 계측, 구조설계 및 법원 감정평가 등 다양한 건설 관련
+            서비스를 제공합니다. 고객의 요구에 맞춘 최고의 솔루션을 제공하여
+            안전하고 효율적인 건축 환경을 구축하는 데 앞장서고 있습니다.
+          </p>
+          <div />
+        </div>
+      </section>
+    );
+  };
 
   const render회사주요업무 = () => (
-    <section className="animate-fadeInUp p-10 text-center md:p-16 lg:flex">
+    <section
+      className={`${inView1 ? "animate-fadeInUp" : ""} p-10 text-center md:p-16 lg:flex`}
+    >
       <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 주요업무
       </h2>
