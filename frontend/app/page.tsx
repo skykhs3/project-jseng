@@ -6,13 +6,16 @@ import MyEmployeeCard from "./ui/my_employee_card";
 import MyDivider from "./ui/my_divider";
 
 export default function Home() {
-  const [isAnimated, setIsAnimated] = useState(false);
-  const [isAnimated2, setIsAnimated2] = useState(false);
-  const [isVideo1Visible, setIsVideo1Visible] = useState(true);
-  const video1Ref = useRef<HTMLVideoElement | null>(null);
-  const video2Ref = useRef<HTMLVideoElement | null>(null);
+  const [isBannerText1Animated, setIsBannerText1Animated] = useState(false);
+  const [isBannerTex2Animated, setIstBannerText2Animated] = useState(false);
+
+  const [isBannerVideo1Visible, setIsBannerVideo1Visible] = useState(true);
+  const bannerVideo1Ref = useRef<HTMLVideoElement | null>(null);
+  const bannerVideo2Ref = useRef<HTMLVideoElement | null>(null);
+
   const secondPageRef = useRef<HTMLDivElement | null>(null);
 
+  // naver map
   const [naverMap, setNaverMap] = useState(null); // late declaration
   const [companyLoc, setCompanyLoc] = useState(null); // late declaration
 
@@ -88,22 +91,22 @@ export default function Home() {
 
   const initBannerTextAnimation = () => {
     const timer = setTimeout(() => {
-      setIsAnimated(true);
+      setIsBannerText1Animated(true);
     }, 2000);
     const timer2 = setTimeout(() => {
-      setIsAnimated2(true);
+      setIstBannerText2Animated(true);
     }, 3000);
     return [timer, timer2];
   };
 
   const initBannerImageAnimation = () => {
     const interval = setInterval(() => {
-      setIsVideo1Visible((prev) => {
-        if (prev && video2Ref!.current) {
-          video2Ref!.current!.currentTime = 0;
+      setIsBannerVideo1Visible((prev) => {
+        if (prev && bannerVideo2Ref!.current) {
+          bannerVideo2Ref!.current!.currentTime = 0;
           // video2Ref!.current!.play();
-        } else if (!prev && video1Ref!.current) {
-          video1Ref!.current!.currentTime = 0;
+        } else if (!prev && bannerVideo1Ref!.current) {
+          bannerVideo1Ref!.current!.currentTime = 0;
           // video1Ref!.current!.play();
         }
 
@@ -121,24 +124,13 @@ export default function Home() {
       return;
     }
     if (
-      e.deltaY > 0 &&
       secondPageRef.current &&
-      window.scrollY < secondPageRef.current.offsetTop
+      0 < secondPageRef.current.getBoundingClientRect().top
     ) {
+      const scrollDirection = e.deltaY > 0;
       isScrolling.current = true;
-      console.log(window.scrollY);
       e.preventDefault();
-      setPageToSecondPage();
-    }
-    if (
-      e.deltaY < 0 &&
-      secondPageRef.current &&
-      window.scrollY < secondPageRef.current.offsetTop
-    ) {
-      isScrolling.current = true;
-      console.log(window.scrollY);
-      e.preventDefault();
-      setPageToFirstPage();
+      scrollDirection ? setScrollPositionToSecondPage() : setScrollPosition(0);
     }
   };
 
@@ -166,28 +158,24 @@ export default function Home() {
     }
   }, [naverMap, companyLoc]);
 
-  const setPageToFirstPage = () => {
-    console.log("go");
+  const setScrollPositionToSecondPage = () => {
+    if (secondPageRef.current) {
+      const element = secondPageRef.current;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
+
+      setScrollPosition(elementPosition);
+    }
+  };
+
+  const setScrollPosition = (scrollPosition: number) => {
     window.scrollTo({
-      top: 0,
+      top: scrollPosition,
       behavior: "smooth",
     });
     setTimeout(() => {
       isScrolling.current = false;
     }, 500);
-  };
-
-  const setPageToSecondPage = () => {
-    if (secondPageRef.current) {
-      console.log("go");
-      window.scrollTo({
-        top: secondPageRef.current.offsetTop,
-        behavior: "smooth",
-      });
-      setTimeout(() => {
-        isScrolling.current = false;
-      }, 500);
-    }
   };
 
   const renderHeader = () => {
@@ -217,7 +205,7 @@ export default function Home() {
     );
   };
 
-  const render배너 = () => {
+  const renderBanner = () => {
     const textShadowStyle = {
       textShadow: "3px 3px 4px rgba(0, 0, 0, 0.7)",
     };
@@ -226,7 +214,7 @@ export default function Home() {
         <div className="absolute bottom-0 flex w-full justify-center">
           <button
             className="absolute bottom-10 z-10 mx-auto animate-withArrowSlideUpDown"
-            onClick={setPageToSecondPage}
+            onClick={setScrollPositionToSecondPage}
           >
             <Image
               src="/icon_down_arrow.png"
@@ -238,14 +226,14 @@ export default function Home() {
         </div>
         <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-6 lg:p-10">
           <p
-            className={`text-2xl font-light text-white md:text-2xl lg:text-4xl ${isAnimated ? "animate-fadeInUp" : "collapse"}`}
+            className={`text-2xl font-light text-white md:text-2xl lg:text-4xl ${isBannerText1Animated ? "animate-fadeInUp" : "collapse"}`}
             style={textShadowStyle}
           >
             건설 분쟁 컨설팅 전문
           </p>
           <div className="h-6"></div>
           <p
-            className={`text-[38px] font-light text-white md:text-[50px] lg:text-[70px] ${isAnimated2 ? "animate-fadeInUp" : "collapse"}`}
+            className={`text-[38px] font-light text-white md:text-[50px] lg:text-[70px] ${isBannerTex2Animated ? "animate-fadeInUp" : "collapse"}`}
             style={textShadowStyle}
           >
             건축시공기술사와
@@ -257,22 +245,22 @@ export default function Home() {
         </div>
         <div className="relative flex h-full w-full justify-center">
           <video
-            ref={video1Ref}
+            ref={bannerVideo1Ref}
             autoPlay={true}
             playsInline={true}
             muted={true}
             loop={true}
-            className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-100" : "opacity-0"}`}
+            className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in ${isBannerVideo1Visible ? "opacity-100" : "opacity-0"}`}
           >
             <source src="/video_banner1_small.mp4" type="video/mp4" />
           </video>
           <video
-            ref={video2Ref}
+            ref={bannerVideo2Ref}
             autoPlay={true}
             muted={true}
             loop={true}
             playsInline={true}
-            className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isVideo1Visible ? "opacity-0" : "opacity-100"}`}
+            className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isBannerVideo1Visible ? "opacity-0" : "opacity-100"}`}
           >
             <source src="/video_banner2_small.mp4" type="video/mp4" />
           </video>
@@ -492,18 +480,28 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       {renderHeader()}
       <main>
-        {render배너()}
-        {render회사소개()}
-        <MyDivider />
-        {render회사주요업무()}
-        <MyDivider />
-        {render조직도()}
-        <MyDivider />
-        {render임직원현황()}
-        <MyDivider />
-        {render주요실적현황()}
-        <MyDivider />
-        {render찾아오시는길()}
+        {renderBanner()}
+        <div className="relative">
+          <Image
+            src={"/image_bg.webp"}
+            width={2000}
+            height={1000}
+            alt={"배경화면"}
+            className="absolute left-0 top-0 -z-10 h-lvh w-full object-cover"
+          ></Image>
+
+          {render회사소개()}
+          <MyDivider />
+          {render회사주요업무()}
+          <MyDivider />
+          {render조직도()}
+          <MyDivider />
+          {render임직원현황()}
+          <MyDivider />
+          {render주요실적현황()}
+          <MyDivider />
+          {render찾아오시는길()}
+        </div>
       </main>
       {renderFooter()}
     </div>
