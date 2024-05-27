@@ -34,10 +34,6 @@ export default function RootLayout({
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://jseng.fly.dev/" />
-        <meta
-          name="format-detection"
-          content="telephone=no, address=no, email=no, address=no"
-        />
       </head>
       <body className={pretendard.className + " bg-white"}>{children}</body>
     </html>
