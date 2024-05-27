@@ -7,31 +7,29 @@ import MyDivider from "./ui/my_divider";
 import { useInView } from "react-intersection-observer";
 
 export default function Home() {
-  const [bannerState, setBannerState] = useState({
-    isText1Animated: false,
-    isText2Animated: false,
-    isVideo1Visible: true,
-  });
+  const [isClient, setIsClient] = useState(false);
 
-  const [isPageRendered, setIsPageRendered] = useState(false);
+  const [isBannerText1Animated, setIsBannerText1Animated] = useState(false);
+  const [isBannerTex2Animated, setIstBannerText2Animated] = useState(false);
 
+  const [isBannerVideo1Visible, setIsBannerVideo1Visible] = useState(true);
+  const bannerVideo1Ref = useRef<HTMLVideoElement | null>(null);
+  const bannerVideo2Ref = useRef<HTMLVideoElement | null>(null);
+
+  const secondPageRef = useRef<HTMLDivElement | null>(null);
   const [backgroundImgCssStyle, setBackgroundImgCssStyle] = useState<
     "absolute" | "fixed"
   >("absolute");
   const [headerCssStyle, setHeaderCssStyle] = useState<string>("");
-
-  const bannerVideo1Ref = useRef<HTMLVideoElement | null>(null);
-  const bannerVideo2Ref = useRef<HTMLVideoElement | null>(null);
-  const secondPageRef = useRef<HTMLDivElement | null>(null);
-  const isScrolling = useRef(false);
 
   const { ref: ref1, inView: inView1 } = useInView({
     triggerOnce: true,
     threshold: 1,
   });
 
-  const [naverMap, setNaverMap] = useState(null);
-  const [companyLoc, setCompanyLoc] = useState(null);
+  // naver map
+  const [naverMap, setNaverMap] = useState(null); // late declaration
+  const [companyLoc, setCompanyLoc] = useState(null); // late declaration
 
   const initNaverMap = async () => {
     const script = document.createElement("script");
@@ -41,11 +39,14 @@ export default function Home() {
     script.async = true;
     document.head.appendChild(script);
 
+    // 스크립트가 로드된 후에 실행될 함수 정의
     script.onload = () => {
       const zoomCenterLoc = new (window as any).naver.maps.LatLng(
         37.4940094,
         127.014925,
       );
+
+      // 지도 옵션 설정
       const mapOptions = {
         center: zoomCenterLoc,
         zoom: 17,
@@ -53,18 +54,23 @@ export default function Home() {
         scrollWheel: false,
         zoomControl: true,
         scaleControl: true,
+        // blankTileImage: "./image_organization_chart.png",
         zoomControlOptions: {
+          //줌 컨트롤의 옵션
           position: (window as any).naver.maps.Position.TOP_RIGHT,
         },
       };
 
+      // 지도 생성
       const map = new (window as any).naver.maps.Map("naver-map", mapOptions);
+
+      // 마커 생성
       const position = new (window as any).naver.maps.LatLng(
         37.494894,
         127.014925,
       );
 
-      new (window as any).naver.maps.Marker({
+      var pinkMarker = new (window as any).naver.maps.Marker({
         position: position,
         map: map,
         icon: {
@@ -78,7 +84,7 @@ export default function Home() {
         },
       });
 
-      new (window as any).naver.maps.Marker({
+      const marker = new (window as any).naver.maps.Marker({
         position: position,
         map: map,
         icon: {
@@ -89,6 +95,7 @@ export default function Home() {
         },
       });
 
+      // setNaverMarker(marker);
       setNaverMap(map);
       setCompanyLoc(zoomCenterLoc);
     };
@@ -96,45 +103,50 @@ export default function Home() {
 
   const initBannerTextAnimation = () => {
     const timer = setTimeout(() => {
-      setBannerState((prev) => ({ ...prev, isText1Animated: true }));
+      setIsBannerText1Animated(true);
     }, 2000);
     const timer2 = setTimeout(() => {
-      setBannerState((prev) => ({ ...prev, isText2Animated: true }));
+      setIstBannerText2Animated(true);
     }, 3000);
     return [timer, timer2];
   };
 
   const initBannerImageAnimation = () => {
     const interval = setInterval(() => {
-      setBannerState((prev) => {
-        if (prev.isVideo1Visible && bannerVideo2Ref.current) {
-          bannerVideo2Ref.current.currentTime = 0;
-        } else if (!prev.isVideo1Visible && bannerVideo1Ref.current) {
-          bannerVideo1Ref.current.currentTime = 0;
+      setIsBannerVideo1Visible((prev) => {
+        if (prev && bannerVideo2Ref!.current) {
+          bannerVideo2Ref!.current!.currentTime = 0;
+          // video2Ref!.current!.play();
+        } else if (!prev && bannerVideo1Ref!.current) {
+          bannerVideo1Ref!.current!.currentTime = 0;
+          // video1Ref!.current!.play();
         }
-        return { ...prev, isVideo1Visible: !prev.isVideo1Visible };
+
+        return !prev;
       });
-    }, 10000);
+    }, 10000); // 10초 간격으로 상태를 토글
+
     return interval;
   };
 
-  const handleWheelEvent = useCallback((e: any) => {
+  const isScrolling = useRef(false);
+  const handleWheelEvent = (e: any) => {
     if (isScrolling.current) {
       e.preventDefault();
       return;
     }
     if (
       secondPageRef.current &&
-      secondPageRef.current.getBoundingClientRect().top > 0
+      0 < secondPageRef.current.getBoundingClientRect().top
     ) {
       const scrollDirection = e.deltaY > 0;
       isScrolling.current = true;
       e.preventDefault();
       scrollDirection ? setScrollPositionToSecondPage() : setScrollPosition(0);
     }
-  }, []);
+  };
 
-  const handleScrollEvent = useCallback(() => {
+  const handleScrollEvent = (e: any) => {
     if (secondPageRef.current) {
       const isScrollPositionReachSecondPageTop =
         0 >= secondPageRef.current.getBoundingClientRect().top;
@@ -148,31 +160,29 @@ export default function Home() {
         setHeaderCssStyle("");
       }
     }
-  }, []);
+  };
 
   useEffect(() => {
-    setIsPageRendered(true);
-
     initNaverMap();
+    setIsClient(true);
+    const timers = [...initBannerTextAnimation()];
+    const interval = initBannerImageAnimation();
 
     window.addEventListener("wheel", handleWheelEvent, { passive: false });
     window.addEventListener("scroll", handleScrollEvent, { passive: false });
 
-    const timers = [...initBannerTextAnimation()];
-    const interval = initBannerImageAnimation();
-
     return () => {
       timers.forEach((time) => clearTimeout(time));
       clearInterval(interval);
-      window.removeEventListener("wheel", handleWheelEvent);
-      window.removeEventListener("scroll", handleScrollEvent);
     };
-  }, [handleWheelEvent, handleScrollEvent]);
+  }, []);
 
   const setMapToOriginPosition = useCallback(() => {
     if (naverMap && companyLoc) {
       (naverMap as any).setZoom(17);
       (naverMap as any).panTo(companyLoc);
+
+      console.log("지도 중심 위치가 설정되었습니다.");
     } else {
       console.log("naverMap 또는 companyLoc가 초기화되지 않았습니다.");
     }
@@ -183,6 +193,7 @@ export default function Home() {
       const element = secondPageRef.current;
       const elementPosition =
         element.getBoundingClientRect().top + window.scrollY;
+
       setScrollPosition(elementPosition);
     }
   };
@@ -214,6 +225,7 @@ export default function Home() {
             alt="로고"
             className="lg:h-[48px] lg:w-[48px]"
           />
+
           <div>
             <h1
               className="text-center text-xl font-bold leading-tight tracking-widest text-black lg:text-2xl"
@@ -251,14 +263,14 @@ export default function Home() {
         </div>
         <div className="absolute z-10 mt-20 flex w-full flex-col justify-center p-10 md:p-16">
           <p
-            className={`text-2xl font-light text-white md:text-3xl lg:text-4xl ${bannerState.isText1Animated ? "animate-fadeInUp" : "collapse"}`}
+            className={`text-2xl font-light text-white md:text-3xl lg:text-4xl ${isBannerText1Animated ? "animate-fadeInUp" : "collapse"}`}
             style={textShadowStyle}
           >
             건설 분쟁 컨설팅 전문
           </p>
           <div className="h-6 md:h-7 lg:h-8"></div>
           <p
-            className={`text-[38px] font-light text-white md:text-[50px] lg:text-[70px] ${bannerState.isText2Animated ? "animate-fadeInUp" : "collapse"}`}
+            className={`text-[38px] font-light text-white md:text-[50px] lg:text-[70px] ${isBannerTex2Animated ? "animate-fadeInUp" : "collapse"}`}
             style={textShadowStyle}
           >
             건축시공기술사
@@ -276,9 +288,9 @@ export default function Home() {
             muted={true}
             loop={true}
             preload="auto"
-            className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in ${bannerState.isVideo1Visible ? "opacity-100" : "opacity-0"}`}
+            className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in ${isBannerVideo1Visible ? "opacity-100" : "opacity-0"}`}
           >
-            <source src="/video_banner1_tiny.mp4" type="video/mp4" />
+            <source src="/video_banner1_small.mp4" type="video/mp4" />
           </video>
           <video
             ref={bannerVideo2Ref}
@@ -287,9 +299,9 @@ export default function Home() {
             loop={true}
             playsInline={true}
             preload="auto"
-            className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${bannerState.isVideo1Visible ? "opacity-0" : "opacity-100"}`}
+            className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isBannerVideo1Visible ? "opacity-0" : "opacity-100"}`}
           >
-            <source src="/video_banner2_tiny.mp4" type="video/mp4" />
+            <source src="/video_banner2_small.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
@@ -306,29 +318,32 @@ export default function Home() {
     />
   );
 
-  const render회사소개 = () => (
-    <section
-      className={`p-10 pt-24 text-center md:p-16 md:pt-32 lg:flex`}
-      ref={secondPageRef}
-    >
-      <div
-        className={`${inView1 ? "animate-delay-300ms animate-fadeInUp" : ""} opacity-0`}
+  const render회사소개 = () => {
+    return (
+      <section
+        className={` p-10 pt-24 text-center md:p-16 md:pt-32 lg:flex`}
+        ref={secondPageRef}
       >
-        <div ref={ref1}></div>
-        <h2
-          className={`mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl`}
+        <div
+          className={`${inView1 ? "animate-delay-300ms animate-fadeInUp" : ""} opacity-0`}
         >
-          회사 소개
-        </h2>
-        <p className="text-start text-xl text-[#52525b] lg:text-2xl">
-          정석 기술 연구소는 건축, 토목, 엔지니어링, 건축물 하자진단, 안전진단,
-          계측, 구조설계 및 법원 감정평가 등 다양한 건설 관련 서비스를
-          제공합니다. 고객의 요구에 맞춘 최고의 솔루션을 제공하여 안전하고
-          효율적인 건축 환경을 구축하는 데 앞장서고 있습니다.
-        </p>
-      </div>
-    </section>
-  );
+          <div ref={ref1}></div>
+          <h2
+            className={`mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl`}
+          >
+            회사 소개
+          </h2>
+          <p className="text-start text-xl text-[#52525b] lg:text-2xl">
+            정석 기술 연구소는 건축, 토목, 엔지니어링, 건축물 하자진단,
+            안전진단, 계측, 구조설계 및 법원 감정평가 등 다양한 건설 관련
+            서비스를 제공합니다. 고객의 요구에 맞춘 최고의 솔루션을 제공하여
+            안전하고 효율적인 건축 환경을 구축하는 데 앞장서고 있습니다.
+          </p>
+          <div />
+        </div>
+      </section>
+    );
+  };
 
   const render회사주요업무 = () => (
     <section
@@ -463,6 +478,7 @@ export default function Home() {
       <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         찾아오시는 길
       </h2>
+
       <div className="relative h-[400px] w-full md:h-[500px] ">
         <div
           id="naver-map"
@@ -498,31 +514,33 @@ export default function Home() {
 
   const renderFooter = () => (
     <footer className="p-4 text-center text-slate-700">
-      <div className="text-sm">
-        서울특별시 서초구 서초중앙로24길 11 요셉빌딩 7F (우)06604
-        <br className="hidden max-[800px]:block" />
-        <span className="inline max-[800px]:hidden"> / </span>
-        <a href={"tel:02-533-7753"} className="underline">
-          TEL 02-533-7753
-        </a>
-        {" / "}
-        <a href={"tel:02-533-7752"} className="underline">
-          FAX 02-533-7752
-        </a>
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
-        <a href={"mailto:jseng@jseng.co.kr"} className="underline">
-          E-mail jseng@jseng.co.kr
-        </a>
-        <br />
-        정석기술연구소
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
-        {isPageRendered ? "사업자등록번호: 126-88-02894" : ""}
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
-        대표자: 김종석
-      </div>
+      {isClient && (
+        <div className="text-sm">
+          서울특별시 서초구 서초중앙로24길 11 요셉빌딩 7F (우)06604
+          <br className="hidden max-[800px]:block" />
+          <span className="inline max-[800px]:hidden"> / </span>
+          <a href={"tel:02-533-7753"} className="underline">
+            TEL 02-533-7753
+          </a>
+          {" / "}
+          <a href={"tel:02-533-7752"} className="underline">
+            FAX 02-533-7752
+          </a>
+          <br className="hidden max-sm:block" />
+          <span className="inline max-sm:hidden"> / </span>
+          <a href={"mailto:jseng@jseng.co.kr"} className="underline">
+            E-mail jseng@jseng.co.kr
+          </a>
+          <br />
+          정석기술연구소
+          <br className="hidden max-sm:block" />
+          <span className="inline max-sm:hidden"> / </span>
+          사업자등록번호: 126-88-02894
+          <br className="hidden max-sm:block" />
+          <span className="inline max-sm:hidden"> / </span>
+          대표자: 김종석
+        </div>
+      )}
     </footer>
   );
 
