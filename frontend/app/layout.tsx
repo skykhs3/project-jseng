@@ -2,22 +2,25 @@ import localFont from "next/font/local";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./globals.css";
+import Head from "next/head";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
+  display: "swap", // Adding font-display swap for better performance
 });
+
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="ko">
-      <meta
-        name="naver-site-verification"
-        content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
-      />
       <head>
+        <meta
+          name="naver-site-verification"
+          content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
+        />
         <title>(주)정석기술연구소</title>
         <meta
           name="description"
@@ -34,12 +37,15 @@ export default function RootLayout({
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://jseng.fly.dev/" />
-        <meta
-          name="format-detection"
-          content="telephone=no, address=no, email=no, address=no"
+        <link
+          rel="preload"
+          href="/fonts/PretendardVariable.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
       </head>
-      <body className={pretendard.className + " bg-white"}>{children}</body>
+      <body className={`${pretendard.className} bg-white`}>{children}</body>
     </html>
   );
 }
