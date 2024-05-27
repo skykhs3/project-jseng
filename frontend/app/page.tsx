@@ -287,6 +287,7 @@ export default function Home() {
             playsInline={true}
             muted={true}
             loop={true}
+            preload="auto"
             className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in ${isBannerVideo1Visible ? "opacity-100" : "opacity-0"}`}
           >
             <source src="/video_banner1_small.mp4" type="video/mp4" />
@@ -297,6 +298,7 @@ export default function Home() {
             muted={true}
             loop={true}
             playsInline={true}
+            preload="auto"
             className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in ${isBannerVideo1Visible ? "opacity-0" : "opacity-100"}`}
           >
             <source src="/video_banner2_small.mp4" type="video/mp4" />
@@ -323,7 +325,7 @@ export default function Home() {
         ref={secondPageRef}
       >
         <div
-          className={`${inView1 ? "animate-delay-500ms animate-fadeInUp" : ""} opacity-0`}
+          className={`${inView1 ? "animate-delay-300ms animate-fadeInUp" : ""} opacity-0`}
         >
           <div ref={ref1}></div>
           <h2
@@ -345,7 +347,7 @@ export default function Home() {
 
   const render회사주요업무 = () => (
     <section
-      className={`${inView1 ? "animate-delay-1500ms animate-fadeInUp" : ""} p-10 text-center opacity-0 md:p-16 lg:flex`}
+      className={`${inView1 ? "animate-delay-1300ms animate-fadeInUp" : ""} p-10 text-center opacity-0 md:p-16 lg:flex`}
     >
       <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 주요업무

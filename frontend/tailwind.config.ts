@@ -44,11 +44,11 @@ const config: Config = {
 
     function ({ addUtilities, e }: { addUtilities: any, e: any }) {
       const delayUtilities = {
-        '.animate-delay-500ms': {
-          'animation-delay': '500ms',
+        '.animate-delay-300ms': {
+          'animation-delay': '300ms',
         },
-        '.animate-delay-1500ms': {
-          'animation-delay': '1500ms',
+        '.animate-delay-1300ms': {
+          'animation-delay': '1300ms',
         },
         '.animate-delay-1s': {
           'animation-delay': '1s',
