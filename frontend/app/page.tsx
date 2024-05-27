@@ -7,6 +7,8 @@ import MyDivider from "./ui/my_divider";
 import { useInView } from "react-intersection-observer";
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+
   const [isBannerText1Animated, setIsBannerText1Animated] = useState(false);
   const [isBannerTex2Animated, setIstBannerText2Animated] = useState(false);
 
@@ -150,9 +152,8 @@ export default function Home() {
         0 >= secondPageRef.current.getBoundingClientRect().top;
       if (isScrollPositionReachSecondPageTop) {
         setBackgroundImgCssStyle("fixed");
-        // setHeaderCssStyle("bg-white shadow-md");
         setHeaderCssStyle(
-          "bg-opacity-90 backdrop-blur-lg backdrop-filter shadow-lg",
+          "bg-white bg-opacity-80 webkit-backdrop-blur-16px shadow-lg",
         );
       } else {
         setBackgroundImgCssStyle("absolute");
@@ -163,6 +164,7 @@ export default function Home() {
 
   useEffect(() => {
     initNaverMap();
+    setIsClient(true);
     const timers = [...initBannerTextAnimation()];
     const interval = initBannerImageAnimation();
 
@@ -503,26 +505,33 @@ export default function Home() {
 
   const renderFooter = () => (
     <footer className="p-4 text-center text-slate-700">
-      <p className="text-sm">
-        서울특별시 서초구 서초중앙로24길 11 요셉빌딩 7F (우)06604
-        <br className="hidden max-[800px]:block" />
-        <span className="inline max-[800px]:hidden"> / </span>
-        <a href={"email:02-533-7753"}>TEL 02-533-7753 / </a>
-        {/* <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span> */}
-        FAX 02-533-7752
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
-        <a href={"mailto:jseng@jseng.co.kr"}>E-mail jseng@jseng.co.kr</a>
-        <br />
-        정석기술연구소
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
-        사업자등록번호: 126-88-02894
-        <br className="hidden max-sm:block" />
-        <span className="inline max-sm:hidden"> / </span>
-        대표자: 김종석
-      </p>
+      {isClient && (
+        <div className="text-sm">
+          서울특별시 서초구 서초중앙로24길 11 요셉빌딩 7F (우)06604
+          <br className="hidden max-[800px]:block" />
+          <span className="inline max-[800px]:hidden"> / </span>
+          <a href={"tel:02-533-7753"} className="underline">
+            TEL 02-533-7753
+          </a>
+          {" / "}
+          <a href={"tel:02-533-7752"} className="underline">
+            FAX 02-533-7752
+          </a>
+          <br className="hidden max-sm:block" />
+          <span className="inline max-sm:hidden"> / </span>
+          <a href={"mailto:jseng@jseng.co.kr"} className="underline">
+            E-mail jseng@jseng.co.kr
+          </a>
+          <br />
+          정석기술연구소
+          <br className="hidden max-sm:block" />
+          <span className="inline max-sm:hidden"> / </span>
+          사업자등록번호: 126-88-02894
+          <br className="hidden max-sm:block" />
+          <span className="inline max-sm:hidden"> / </span>
+          대표자: 김종석
+        </div>
+      )}
     </footer>
   );
 

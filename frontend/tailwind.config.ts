@@ -30,6 +30,17 @@ const config: Config = {
       withArrowSlideUpDown: 'kfSlideUpDown 2s infinite ease-in-out'
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }: { addUtilities: any }) {
+      const newUtilities = {
+        '.webkit-backdrop-blur-16px': {
+          '-webkit-backdrop-filter': 'blur(16px)',
+          'backdrop-filter': 'blur(16px)', // Optional: Include standard property for broader compatibility
+        },
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
 };
 export default config;
