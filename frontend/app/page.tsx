@@ -226,12 +226,17 @@ export default function Home() {
             className="lg:h-[48px] lg:w-[48px]"
           />
 
-          <h1
-            className="text-xl font-bold text-black lg:text-2xl"
-            style={textShadowStyle}
-          >
-            (주)정석기술연구소
-          </h1>
+          <div>
+            <h1
+              className="text-center text-xl font-bold leading-tight tracking-widest text-black lg:text-2xl"
+              style={textShadowStyle}
+            >
+              (주)정석기술연구소
+            </h1>
+            <h2 className="text-xs font-normal leading-tight lg:text-sm">
+              Construction technology support
+            </h2>
+          </div>
         </div>
       </header>
     );
@@ -317,7 +322,9 @@ export default function Home() {
         className={` p-10 pt-24 text-center md:p-16 md:pt-32 lg:flex`}
         ref={secondPageRef}
       >
-        <div className={`${inView1 ? "animate-fadeInUp" : ""}`}>
+        <div
+          className={`${inView1 ? "animate-delay-500ms animate-fadeInUp" : ""} opacity-0`}
+        >
           <div ref={ref1}></div>
           <h2
             className={`mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl`}
@@ -338,7 +345,7 @@ export default function Home() {
 
   const render회사주요업무 = () => (
     <section
-      className={`${inView1 ? "animate-fadeInUp" : ""} p-10 text-center md:p-16 lg:flex`}
+      className={`${inView1 ? "animate-delay-1500ms animate-fadeInUp" : ""} p-10 text-center opacity-0 md:p-16 lg:flex`}
     >
       <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
         회사 주요업무

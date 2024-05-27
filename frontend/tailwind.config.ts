@@ -25,7 +25,7 @@ const config: Config = {
       },
     },
     animation: {
-      fadeInUp: 'kfFadeInUp 0.8s ease-out',
+      fadeInUp: 'kfFadeInUp 1s ease-out forwards',
       withBannerWidthExpand: 'kfBannerWidthExpand 2s ease-in-out forwards',
       withArrowSlideUpDown: 'kfSlideUpDown 2s infinite ease-in-out'
     },
@@ -40,6 +40,22 @@ const config: Config = {
       };
 
       addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+
+    function ({ addUtilities, e }: { addUtilities: any, e: any }) {
+      const delayUtilities = {
+        '.animate-delay-500ms': {
+          'animation-delay': '500ms',
+        },
+        '.animate-delay-1500ms': {
+          'animation-delay': '1500ms',
+        },
+        '.animate-delay-1s': {
+          'animation-delay': '1s',
+        },
+      }
+
+      addUtilities(delayUtilities, ['responsive', 'hover']);
     },
   ],
 };
