@@ -2,7 +2,7 @@ name: Frontend Deploy
 on:
   push:
     branches:
-      - m  
+      - main 
       # change to main if needed
 jobs:
   deploy:
@@ -11,7 +11,13 @@ jobs:
     concurrency: deploy-group    # optional: ensure only one action runs at a time
     steps:
       - uses: actions/checkout@v4
+
       - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Create .env file
+        run: |
+          echo "NEXT_PUBLIC_NAVER_SERVICE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_NAVER_SERVICE_CLIENT_ID }}" > ./frontend/.env
+
       - name: Deploy to Fly.io
         run:
           flyctl deploy --remote-only ./frontend
