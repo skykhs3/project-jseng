@@ -403,19 +403,16 @@ export default function Home() {
       </h2>
       <ul className="list-outside">
         {업무내용.map((item, index) => (
-          <>
+          <li key={index}>
             {index > 0 && <div className="h-7 lg:h-8"></div>}
-            <li
-              key={index}
-              className="m-auto list-hyphen break-keep text-start text-base text-[#52525b] lg:text-xl"
-            >
+            <div className="m-auto list-hyphen break-keep text-start text-base text-[#52525b] lg:text-xl">
               <span className="text-xl font-medium text-black lg:text-2xl">
                 {item.title}
               </span>
               <br />
               {item.description}
-            </li>
-          </>
+            </div>
+          </li>
         ))}
       </ul>
     </section>
