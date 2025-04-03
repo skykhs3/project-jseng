@@ -9,7 +9,8 @@ const Location: React.FC = () => {
   const [companyLoc, setCompanyLoc] = useState(null);
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.05,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const initNaverMap = useCallback(async () => {

@@ -7,12 +7,14 @@ import { useInView } from "react-intersection-observer";
 const CompanyIntroduction: React.FC = () => {
   const { ref: contentRef, inView: contentInView } = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.05,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const { ref: statsRef, inView: statsInView } = useInView({
     triggerOnce: true,
-    threshold: 0.2,
+    threshold: 0.05,
+    rootMargin: "0px 0px -50px 0px",
   });
 
   const stats = [
@@ -30,11 +32,11 @@ const CompanyIntroduction: React.FC = () => {
       >
         {/* Company Introduction Content */}
         <div className="order-1">
-          <h2 className="heading-lg mb-6 text-primary-800">회사 소개</h2>
+          <h2 className="heading-lg text-primary-800 mb-6">회사 소개</h2>
 
-          <div className="space-y-6 text-secondary-700">
+          <div className="text-secondary-700 space-y-6">
             <p className="text-lg leading-relaxed">
-              <span className="font-semibold text-primary-700">
+              <span className="text-primary-700 font-semibold">
                 정석기술연구소
               </span>
               는 건축, 토목, 엔지니어링, 건축물 하자진단, 안전진단, 법원
@@ -42,7 +44,7 @@ const CompanyIntroduction: React.FC = () => {
             </p>
 
             <p className="text-lg leading-relaxed">
-              <span className="font-semibold text-primary-700">
+              <span className="text-primary-700 font-semibold">
                 정석기술연구소
               </span>
               는 설계, 시공, 견적, 안전, 품질, CS, 법무분야의 건설사에서 근무한
@@ -51,7 +53,7 @@ const CompanyIntroduction: React.FC = () => {
 
             <p className="text-lg leading-relaxed">
               전문 역량을 쌓은 전문 기술자들로 구성된{" "}
-              <span className="font-semibold text-primary-700">
+              <span className="text-primary-700 font-semibold">
                 국내 최고의 엔지니어링 회사
               </span>
               입니다.
@@ -86,10 +88,10 @@ const CompanyIntroduction: React.FC = () => {
             key={index}
             className={`flex flex-col items-center rounded-lg ${stat.color} p-6 text-center shadow-md transition-transform hover:-translate-y-1`}
           >
-            <span className="text-4xl font-bold text-primary-700">
+            <span className="text-primary-700 text-4xl font-bold">
               {stat.number}
             </span>
-            <span className="mt-2 text-lg font-medium text-secondary-700">
+            <span className="text-secondary-700 mt-2 text-lg font-medium">
               {stat.label}
             </span>
           </div>
