@@ -17,6 +17,7 @@ const Banner: React.FC<BannerProps> = ({
   const [isVideo1Visible, setIsVideo1Visible] = React.useState(true);
   const [isText1Animated, setIsText1Animated] = React.useState(false);
   const [isText2Animated, setIsText2Animated] = React.useState(false);
+  const [hasScrolled, setHasScrolled] = React.useState(false);
 
   const initBannerTextAnimation = () => {
     const timer = setTimeout(() => {
@@ -49,6 +50,26 @@ const Banner: React.FC<BannerProps> = ({
       clearInterval(interval);
     };
   }, [isVideo1Visible]);
+
+  // Add scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 50 && !hasScrolled) {
+        setHasScrolled(true);
+        // Action to perform when user scrolls down
+        const element = document.getElementById("회사소개");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else if (scrollPosition <= 50 && hasScrolled) {
+        setHasScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasScrolled]);
 
   const textShadowStyle = {
     textShadow: "3px 3px 8px rgba(0, 0, 0, 1), 0px 0px 15px rgba(0, 0, 0, 0.8)",
