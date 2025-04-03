@@ -67,9 +67,7 @@ const MainBusiness: React.FC = () => {
             <div
               key={index}
               className={`border-secondary-200 flex flex-col rounded-lg border bg-white p-6 shadow-md transition-all hover:shadow-lg ${
-                inView
-                  ? `animate-fadeInUp animate-delay-${300 + index * 100}ms`
-                  : "opacity-0"
+                inView ? `animate-fadeInUp ` : "opacity-0"
               }`}
             >
               <div className="mb-4 flex items-center">

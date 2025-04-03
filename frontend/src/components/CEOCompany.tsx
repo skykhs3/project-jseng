@@ -104,8 +104,8 @@ const CEOCompany: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden pb-10 md:pb-16">
-      <h2 className="p-10 pb-5 text-start text-3xl font-medium text-[#09090b] md:p-16 md:pb-8 lg:min-w-80 lg:text-4xl">
+    <div className="container-custom">
+      <h2 className="heading-lg text-primary-800 mb-6">
         대표가 직접 뛰는 회사
       </h2>
       <Slider {...settings}>
@@ -120,7 +120,7 @@ const CEOCompany: React.FC = () => {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
-            <p className="mt-4 text-center text-sm text-[#52525b] md:text-base">
+            <p className="text-secondary-700 mt-4 text-center text-sm md:text-base">
               {image.description}
             </p>
           </div>

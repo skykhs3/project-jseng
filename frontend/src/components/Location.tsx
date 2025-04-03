@@ -105,15 +105,15 @@ const Location: React.FC = () => {
   return (
     <div className="container-custom" id="찾아오시는길">
       <section
-        className={`opacity-0 ${inView ? "animate-fadeInUp" : ""}`}
+        className={`${inView ? "animate-fadeInUp" : "opacity-0"}`}
         ref={ref}
       >
-        <h2 className="heading-lg text-primary-800 mb-8">찾아오시는 길</h2>
+        <h2 className="heading-lg text-primary-800 mb-6">찾아오시는 길</h2>
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* 지도 섹션 */}
           <div className="order-2 overflow-hidden rounded-lg shadow-lg lg:order-1">
-            <div className="relative h-[350px] w-full md:h-[679px]">
+            <div className="relative h-[350px] w-full md:h-full">
               <div id="naver-map" className="z-0 h-full w-full bg-white"></div>
               <button
                 className="border-secondary-200 hover:bg-secondary-50 absolute right-[52px] top-[11px] z-10 flex h-[30px] w-[30px] items-center justify-center rounded-md border bg-white shadow-sm transition-all"
@@ -231,7 +231,7 @@ const Location: React.FC = () => {
                   오시는 방법
                 </h3>
               </div>
-              <div className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
                 {transportationOptions.map((option, index) => (
                   <div key={index} className="flex items-start">
                     <span className="bg-secondary-100 mr-3 flex h-8 w-8 items-center justify-center rounded-full text-lg font-medium">
@@ -241,7 +241,7 @@ const Location: React.FC = () => {
                       <h4 className="text-secondary-800 font-bold">
                         {option.type}
                       </h4>
-                      <p className="text-secondary-600">{option.details}</p>
+                      <p className="text-secondary-700">{option.details}</p>
                     </div>
                   </div>
                 ))}
@@ -268,11 +268,11 @@ const Location: React.FC = () => {
                 <h3 className="text-primary-700 text-xl font-bold">영업시간</h3>
               </div>
               <div className="border-secondary-100 flex justify-between border-b pb-2">
-                <span className="text-secondary-700 font-medium">평일</span>
+                <span className="text-secondary-800 font-medium">평일</span>
                 <span className="text-secondary-700">09:00 - 18:00</span>
               </div>
               <div className="flex justify-between pt-2">
-                <span className="text-secondary-700 font-medium">
+                <span className="text-secondary-800 font-medium">
                   주말 및 공휴일
                 </span>
                 <span className="text-secondary-700">휴무</span>
