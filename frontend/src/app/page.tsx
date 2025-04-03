@@ -12,16 +12,13 @@ import Footer from "../components/Footer";
 import Divider from "../components/Divider";
 
 export default function Home() {
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
-  const [isSecondPageVisible, setIsSecondPageVisible] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isProgrammaticScroll, setIsProgrammaticScroll] = useState(false);
 
   const handleScroll = useCallback(() => {
     const scrollPosition = window.scrollY;
     const windowHeight = window.innerHeight;
 
-    setIsBannerVisible(scrollPosition < windowHeight * 0.5);
-    setIsSecondPageVisible(scrollPosition > windowHeight * 0.5);
     setIsScrolling(scrollPosition > 100);
   }, []);
 
@@ -32,13 +29,10 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header />
+      <Header setIsProgrammaticScroll={setIsProgrammaticScroll} />
       <main className="flex-1 bg-white">
         {/* Hero Banner */}
-        <Banner
-          isBannerVisible={isBannerVisible}
-          isSecondPageVisible={isSecondPageVisible}
-        />
+        <Banner isProgrammaticScroll={isProgrammaticScroll} />
 
         {/* Company Introduction */}
         <section className="section-padding relative bg-white">

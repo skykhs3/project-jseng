@@ -4,14 +4,10 @@ import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 
 interface BannerProps {
-  isBannerVisible: boolean;
-  isSecondPageVisible: boolean;
+  isProgrammaticScroll: boolean;
 }
 
-const Banner: React.FC<BannerProps> = ({
-  isBannerVisible,
-  isSecondPageVisible,
-}) => {
+const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
   const bannerVideo1Ref = useRef<HTMLVideoElement | null>(null);
   const bannerVideo2Ref = useRef<HTMLVideoElement | null>(null);
   const [isVideo1Visible, setIsVideo1Visible] = React.useState(true);
@@ -54,7 +50,14 @@ const Banner: React.FC<BannerProps> = ({
   // Add scroll detection
   useEffect(() => {
     const handleScroll = () => {
+      // Don't override navigation if it's a programmatic scroll
+      if (isProgrammaticScroll) {
+        setHasScrolled(true);
+        return;
+      }
+
       const scrollPosition = window.scrollY;
+      console.log(scrollPosition, isProgrammaticScroll);
       if (scrollPosition > 50 && !hasScrolled) {
         setHasScrolled(true);
         // Action to perform when user scrolls down
@@ -69,7 +72,7 @@ const Banner: React.FC<BannerProps> = ({
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasScrolled]);
+  }, [hasScrolled, isProgrammaticScroll]);
 
   const textShadowStyle = {
     textShadow: "3px 3px 8px rgba(0, 0, 0, 1), 0px 0px 15px rgba(0, 0, 0, 0.8)",
@@ -139,6 +142,7 @@ const Banner: React.FC<BannerProps> = ({
           onClick={() => {
             const element = document.getElementById("회사소개");
             if (element) {
+              setHasScrolled(true);
               element.scrollIntoView({ behavior: "smooth" });
             }
           }}

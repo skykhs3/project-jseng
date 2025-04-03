@@ -3,7 +3,11 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  setIsProgrammaticScroll: (isProgrammaticScroll: boolean) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ setIsProgrammaticScroll }) => {
   const [headerStyle, setHeaderStyle] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -15,28 +19,51 @@ const Header: React.FC = () => {
     { href: "#찾아오시는길", label: "찾아오시는 길" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const secondPage = document.getElementById("회사소개");
-      if (secondPage) {
-        const isScrollPositionReachSecondPageTop =
-          0 >= secondPage.getBoundingClientRect().top;
-        if (isScrollPositionReachSecondPageTop) {
-          setHeaderStyle(
-            "bg-white bg-opacity-95 webkit-backdrop-blur-16px shadow-md",
-          );
-        } else {
-          setHeaderStyle("bg-black bg-opacity-30 webkit-backdrop-blur-16px");
-        }
+  const handleScroll = () => {
+    const secondPage = document.getElementById("회사소개");
+    if (secondPage) {
+      const isScrollPositionReachSecondPageTop =
+        0 >= secondPage.getBoundingClientRect().top;
+      if (isScrollPositionReachSecondPageTop) {
+        setHeaderStyle(
+          "bg-white bg-opacity-95 webkit-backdrop-blur-16px shadow-md",
+        );
+      } else {
+        setHeaderStyle("bg-black bg-opacity-30 webkit-backdrop-blur-16px");
       }
-    };
+    }
+  };
 
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMobileMenu = () => {
+    if (!isMobileMenuOpen) {
+      handleScroll();
+    }
+    if (isMobileMenuOpen) {
+      const secondPage = document.getElementById("회사소개");
+      if (secondPage) {
+        const isScrollPositionTop = 0 == window.scrollY;
+        console.log(window.scrollY);
+        if (isScrollPositionTop) {
+          setHeaderStyle("");
+        }
+      }
+    }
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleClickAnchor = () => {
+    setIsProgrammaticScroll(true);
+    setIsMobileMenuOpen(false);
+
+    // Reset programmatic scroll flag after navigation completes
+    setTimeout(() => {
+      setIsProgrammaticScroll(false);
+    }, 1000);
   };
 
   // 스크롤 위치에 따라 다른 텍스트 스타일 적용
@@ -92,6 +119,19 @@ const Header: React.FC = () => {
                   <a
                     href={link.href}
                     className={`${navLinkClass} font-medium transition`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsProgrammaticScroll(true);
+                      const element = document.getElementById(
+                        link.href.substring(1),
+                      );
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setTimeout(() => {
+                        setIsProgrammaticScroll(false);
+                      }, 1000);
+                    }}
                   >
                     {link.label}
                   </a>
@@ -145,9 +185,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div
-            className={`rounded-b-lg lg:hidden ${headerStyle.includes("bg-white") ? "bg-white" : "bg-black bg-opacity-80"}`}
-          >
+          <div className={`rounded-b-lg bg-transparent lg:hidden`}>
             <nav className="pb-4">
               <ul className="space-y-2">
                 {navLinks.map((link) => (
@@ -159,7 +197,20 @@ const Header: React.FC = () => {
                           ? "text-secondary-700 hover:bg-secondary-50 hover:text-primary-600"
                           : "hover:text-primary-300 text-white hover:bg-black hover:bg-opacity-50"
                       }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsProgrammaticScroll(true);
+                        setIsMobileMenuOpen(false);
+                        const element = document.getElementById(
+                          link.href.substring(1),
+                        );
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }
+                        setTimeout(() => {
+                          setIsProgrammaticScroll(false);
+                        }, 1000);
+                      }}
                     >
                       {link.label}
                     </a>
