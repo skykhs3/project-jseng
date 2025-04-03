@@ -9,8 +9,8 @@ WORKDIR /app
 # 전체 파일 복사
 COPY . .
 
-# 의존성 설치
-RUN npm install
+# 의존성 설치 (--legacy-peer-deps 플래그 추가)
+RUN npm install --legacy-peer-deps
 
 
 # Next.js 애플리케이션 빌드
