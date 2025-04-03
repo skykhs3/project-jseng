@@ -5,7 +5,7 @@ import "./globals.css";
 import Head from "next/head";
 
 const pretendard = localFont({
-  src: "./fonts/PretendardVariable.woff2",
+  src: "../fonts/PretendardVariable.woff2",
   display: "swap", // Adding font-display swap for better performance
 });
 
