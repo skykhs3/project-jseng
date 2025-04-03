@@ -112,7 +112,7 @@ const Location: React.FC = () => {
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* 지도 섹션 */}
-          <div className="order-2 overflow-hidden rounded-lg shadow-lg lg:order-1">
+          <div className="order-2 min-h-[350px] overflow-hidden rounded-lg shadow-lg lg:order-1">
             <div className="relative h-[350px] w-full md:h-full">
               <div id="naver-map" className="z-0 h-full w-full bg-white"></div>
               <button
