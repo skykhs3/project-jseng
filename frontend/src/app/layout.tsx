@@ -2,12 +2,34 @@ import localFont from "next/font/local";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./globals.css";
-import Head from "next/head";
 
+// Load the font
 const pretendard = localFont({
   src: "../fonts/PretendardVariable.woff2",
-  display: "swap", // Adding font-display swap for better performance
+  display: "swap",
+  variable: "--font-pretendard",
 });
+
+export const metadata = {
+  title: "(주)정석기술연구소",
+  description:
+    "건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석",
+  openGraph: {
+    title: "(주)정석기술연구소",
+    description:
+      "건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석",
+    url: "https://jseng.fly.dev/",
+    images: [
+      {
+        url: "https://jseng.fly.dev/icon_logo.png",
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -15,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={`${pretendard.variable} scroll-smooth`}>
       <head>
         <link
           rel="apple-touch-icon"
@@ -51,24 +73,10 @@ export default function RootLayout({
           name="naver-site-verification"
           content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
         />
-        <title>(주)정석기술연구소</title>
-        <meta
-          name="description"
-          content="건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석"
-        />
-        <meta property="og:title" content="(주)정석기술연구소" />
-        <meta
-          property="og:description"
-          content="건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석"
-        />
-        <meta
-          property="og:image"
-          content="https://jseng.fly.dev/icon_logo.png"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jseng.fly.dev/" />
       </head>
-      <body className={`${pretendard.className} bg-white`}>{children}</body>
+      <body className={`text-secondary-900 bg-white font-sans`}>
+        {children}
+      </body>
     </html>
   );
 }
