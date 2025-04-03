@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom slick carousel styles */
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: white !important;
+}
+
+.slick-prev {
+  left: 20px !important;
+}
+
+.slick-next {
+  right: 20px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #000 !important;
+  font-size: 20px !important;
+}
+
+.slick-dots {
+  bottom: 20px !important;
+}
+
+.slick-dots li button:before {
+  color: white !important;
+  opacity: 0.5 !important;
+}
+
+.slick-dots li.slick-active button:before {
+  color: white !important;
+  opacity: 1 !important;
+}
+
+.slick-slide {
+  padding: 0 10px;
+}
+
+.slick-track {
+  display: flex !important;
+  align-items: center;
+}

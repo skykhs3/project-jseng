@@ -6,6 +6,7 @@ import MyEmployeeCard from "./ui/my_employee_card";
 import MyDivider from "./ui/my_divider";
 import { useInView } from "react-intersection-observer";
 import useSmoothScroll from "./utils/my_scroll";
+import Carousel from "./ui/carousel";
 
 export default function Home() {
   const [bannerState, setBannerState] = useState({
@@ -37,9 +38,7 @@ export default function Home() {
 
   const initNaverMap = async () => {
     const script = document.createElement("script");
-    script.src =
-      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_SERVICE_CLIENT_ID}` ??
-      "";
+    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_SERVICE_CLIENT_ID}`;
     script.async = true;
     document.head.appendChild(script);
 
@@ -419,7 +418,7 @@ export default function Home() {
   );
 
   const render대표가직접뛰는회사 = () => {
-    let images = [
+    const images = [
       {
         imageUrl: "/image_horizontal1.jpeg",
         description:
@@ -455,11 +454,6 @@ export default function Home() {
         image_position: "object-[center_right]",
       },
     ];
-    images = [...images, ...images];
-
-    const widthForSmallScreen = `w-[3840px]`;
-    const widthForMediumScreen = `md:w-[3984px]`;
-    const widthForLargeScreen = `lg:w-[7584px]`;
 
     return (
       <div className="relative w-full overflow-hidden pb-10 md:pb-16">
@@ -468,29 +462,7 @@ export default function Home() {
         >
           대표가 직접 뛰는 회사
         </h2>
-        <div
-          className={`overflow flex ${widthForSmallScreen} animate-horizontalSlide flex-row ${widthForMediumScreen} ${widthForLargeScreen}`}
-        >
-          {images.map((src, index) => (
-            <div key={index} className="flex flex-row">
-              <div className="w-[20px] flex-shrink-0 md:w-[32px] lg:w-[50px]"></div>
-              <div className="w-[300px] lg:w-[600px]">
-                <div className="sh relative h-[400px] border border-gray-200 shadow-lg">
-                  <Image
-                    src={src.imageUrl}
-                    alt={`Slide ${index}`}
-                    width={1000}
-                    height={1000}
-                    className={`h-full w-full object-cover ${src.image_position} translate-z-0`}
-                  />
-                </div>
-                <p className="w-full break-keep pt-2 text-center text-base translate-z-0 lg:text-xl">
-                  {src.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel images={images} />
       </div>
     );
   };
