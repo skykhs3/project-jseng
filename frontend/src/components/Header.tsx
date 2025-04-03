@@ -3,11 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-interface HeaderProps {
-  setIsProgrammaticScroll: (isProgrammaticScroll: boolean) => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ setIsProgrammaticScroll }) => {
+const Header: React.FC = () => {
   const [headerStyle, setHeaderStyle] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -123,16 +119,12 @@ const Header: React.FC<HeaderProps> = ({ setIsProgrammaticScroll }) => {
                     className={`${navLinkClass} font-medium transition`}
                     onClick={(e) => {
                       e.preventDefault();
-                      setIsProgrammaticScroll(true);
                       const element = document.getElementById(
                         link.href.substring(1),
                       );
                       if (element) {
                         element.scrollIntoView({ behavior: "smooth" });
                       }
-                      setTimeout(() => {
-                        setIsProgrammaticScroll(false);
-                      }, 1000);
                     }}
                   >
                     {link.label}
@@ -201,7 +193,6 @@ const Header: React.FC<HeaderProps> = ({ setIsProgrammaticScroll }) => {
                       }`}
                       onClick={(e) => {
                         e.preventDefault();
-                        setIsProgrammaticScroll(true);
                         setIsMobileMenuOpen(false);
                         const element = document.getElementById(
                           link.href.substring(1),
@@ -209,9 +200,6 @@ const Header: React.FC<HeaderProps> = ({ setIsProgrammaticScroll }) => {
                         if (element) {
                           element.scrollIntoView({ behavior: "smooth" });
                         }
-                        setTimeout(() => {
-                          setIsProgrammaticScroll(false);
-                        }, 1000);
                       }}
                     >
                       {link.label}

@@ -3,17 +3,12 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 
-interface BannerProps {
-  isProgrammaticScroll: boolean;
-}
-
-const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
+const Banner: React.FC = () => {
   const bannerVideo1Ref = useRef<HTMLVideoElement | null>(null);
   const bannerVideo2Ref = useRef<HTMLVideoElement | null>(null);
   const [isVideo1Visible, setIsVideo1Visible] = React.useState(true);
   const [isText1Animated, setIsText1Animated] = React.useState(false);
   const [isText2Animated, setIsText2Animated] = React.useState(false);
-  const [hasScrolled, setHasScrolled] = React.useState(true);
 
   const initBannerTextAnimation = () => {
     const timer = setTimeout(() => {
@@ -25,25 +20,19 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
     return [timer, timer2];
   };
 
-  const initBannerImageAnimation = () => {
-    const interval = setInterval(() => {
-      if (isVideo1Visible && bannerVideo2Ref.current) {
-        bannerVideo2Ref.current.currentTime = 0;
-      } else if (!isVideo1Visible && bannerVideo1Ref.current) {
-        bannerVideo1Ref.current.currentTime = 0;
-      }
-      setIsVideo1Visible(!isVideo1Visible);
-    }, 10000);
-    return interval;
-  };
+  useEffect(() => {
+    const initBannerImageAnimation = () => {
+      const interval = setInterval(() => {
+        if (isVideo1Visible && bannerVideo2Ref.current) {
+          bannerVideo2Ref.current.currentTime = 0;
+        } else if (!isVideo1Visible && bannerVideo1Ref.current) {
+          bannerVideo1Ref.current.currentTime = 0;
+        }
+        setIsVideo1Visible(!isVideo1Visible);
+      }, 10000);
+      return interval;
+    };
 
-  useEffect(() => {
-    const scrollPosition = window.scrollY;
-    if (scrollPosition < 50) {
-      setHasScrolled(false);
-    }
-  }, []);
-  useEffect(() => {
     const timers = [...initBannerTextAnimation()];
     const interval = initBannerImageAnimation();
 
@@ -52,33 +41,6 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
       clearInterval(interval);
     };
   }, [isVideo1Visible]);
-
-  // Add scroll detection
-  useEffect(() => {
-    const handleScroll = () => {
-      // Don't override navigation if it's a programmatic scroll
-      if (isProgrammaticScroll) {
-        setHasScrolled(true);
-        return;
-      }
-
-      const scrollPosition = window.scrollY;
-      console.log(scrollPosition, isProgrammaticScroll, hasScrolled);
-      if (scrollPosition > 50 && !hasScrolled) {
-        setHasScrolled(true);
-        // Action to perform when user scrolls down
-        const element = document.getElementById("회사소개");
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      } else if (scrollPosition <= 50 && hasScrolled) {
-        setHasScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasScrolled, isProgrammaticScroll]);
 
   const textShadowStyle = {
     textShadow: "3px 3px 8px rgba(0, 0, 0, 1), 0px 0px 15px rgba(0, 0, 0, 0.8)",
@@ -118,23 +80,21 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
       {/* 텍스트 컨텐츠 */}
       <div className="absolute inset-0 z-[2] flex flex-col justify-center">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl p-10 md:p-16">
+          <div className="mx-auto max-w-3xl p-10 md:p-16">
             <p
-              className={`text-2xl font-bold text-white md:text-3xl lg:text-4xl ${isText1Animated ? "animate-fadeInUp" : "collapse"}`}
+              className={`text-center text-2xl font-bold text-white md:text-3xl lg:text-4xl ${isText1Animated ? "animate-fadeInUp" : "collapse"}`}
               style={textShadowStyle}
             >
-              건설 분쟁 컨설팅 전문
+              건설 분쟁 컨설팅 전문 <br />
+              (주)정석기술연구소
             </p>
             <div className="h-6 md:h-7 lg:h-8"></div>
             <p
-              className={`text-[38px] font-bold leading-tight text-white md:text-[50px] lg:text-[70px] ${isText2Animated ? "animate-fadeInUp" : "collapse"}`}
+              className={`break-keep text-center text-3xl font-bold leading-tight text-white md:text-[50px] lg:text-6xl ${isText2Animated ? "animate-fadeInUp" : "collapse"}`}
               style={textShadowStyle}
             >
-              건축시공기술사와
-              <br />
-              건축사가
-              <br />
-              함께합니다
+              최고의 <span className="text-primary-300">건축시공기술사</span>와{" "}
+              <span className="text-primary-300">건축사</span>가 해결해드립니다
             </p>
           </div>
         </div>
@@ -147,7 +107,6 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
           onClick={() => {
             const element = document.getElementById("회사소개");
             if (element) {
-              setHasScrolled(true);
               element.scrollIntoView({ behavior: "smooth" });
             }
           }}

@@ -13,12 +13,9 @@ import Divider from "../components/Divider";
 
 export default function Home() {
   const [isScrolling, setIsScrolling] = useState(false);
-  const [isProgrammaticScroll, setIsProgrammaticScroll] = useState(false);
 
   const handleScroll = useCallback(() => {
     const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-
     setIsScrolling(scrollPosition > 100);
   }, []);
 
@@ -29,10 +26,10 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <Header setIsProgrammaticScroll={setIsProgrammaticScroll} />
+      <Header />
       <main className="flex-1 bg-white">
         {/* Hero Banner */}
-        <Banner isProgrammaticScroll={isProgrammaticScroll} />
+        <Banner />
 
         {/* Company Introduction */}
         <section className="section-padding relative bg-white">
