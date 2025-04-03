@@ -30,12 +30,12 @@ const CEOCompany: React.FC = () => {
     },
     {
       imageUrl: "/image_horizontal5.jpeg",
-      description: "1군 건설사 CS협의체 하자소송 대응방안 강연",
+      description: "1군 건설사 CS협의체 하자소송 대응방안 강연 연사",
       image_position: "object-center",
     },
     {
       imageUrl: "/image_horizontal6.jpeg",
-      description: "1군 건설사 CS협의체 하자소송 대응방안 강연",
+      description: "1군 건설사 CS협의체 하자소송 대응방안 강연 연사",
       image_position: "object-[center_right]",
     },
   ];
@@ -104,11 +104,9 @@ const CEOCompany: React.FC = () => {
   };
 
   return (
-    <div className="container-custom">
-      <h2 className="heading-lg text-primary-800 mb-6">
-        대표가 직접 뛰는 회사
-      </h2>
-      <Slider {...settings}>
+    <div className="container-custom pb-12">
+      <h2 className="heading-lg text-primary-800 mb-6">회사 소식</h2>
+      <Slider {...settings} className="ceo-slider">
         {images.map((image, index) => (
           <div key={index} className="px-4">
             <div className="relative h-[300px] w-full overflow-hidden rounded-lg md:h-[400px] lg:h-[500px]">

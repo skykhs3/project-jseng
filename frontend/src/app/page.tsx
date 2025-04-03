@@ -12,16 +12,10 @@ import Footer from "../components/Footer";
 import Divider from "../components/Divider";
 
 export default function Home() {
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
-  const [isSecondPageVisible, setIsSecondPageVisible] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
 
   const handleScroll = useCallback(() => {
     const scrollPosition = window.scrollY;
-    const windowHeight = window.innerHeight;
-
-    setIsBannerVisible(scrollPosition < windowHeight * 0.5);
-    setIsSecondPageVisible(scrollPosition > windowHeight * 0.5);
     setIsScrolling(scrollPosition > 100);
   }, []);
 
@@ -35,43 +29,43 @@ export default function Home() {
       <Header />
       <main className="flex-1 bg-white">
         {/* Hero Banner */}
-        <Banner
-          isBannerVisible={isBannerVisible}
-          isSecondPageVisible={isSecondPageVisible}
-        />
+        <Banner />
 
         {/* Company Introduction */}
-        <section id="회사소개" className="section-padding bg-white">
-          <div className="pt-20">
-            <CompanyIntroduction />
-          </div>
+        <section className="section-padding relative bg-white">
+          <div id="회사소개" className="absolute -top-[70px]" />
+          <CompanyIntroduction />
         </section>
 
         <Divider />
 
         {/* Main Business */}
-        <section id="주요업무" className="section-padding bg-secondary-50">
+        <section className="section-padding bg-secondary-50 relative">
+          <div id="주요업무" className="absolute -top-[70px]" />
           <MainBusiness />
         </section>
 
         <Divider />
 
         {/* CEO Message */}
-        <section id="회사소식" className="section-padding bg-white">
+        <section className="section-padding relative bg-white">
+          <div id="회사소식" className="absolute -top-[70px]" />
           <CEOCompany />
         </section>
 
         <Divider />
 
         {/* Employee Status */}
-        <section id="조직도" className="section-padding bg-secondary-50">
+        <section className="section-padding bg-secondary-50 relative">
+          <div id="조직도" className="absolute -top-[70px]" />
           <EmployeeStatus />
         </section>
 
         <Divider />
 
         {/* Location */}
-        <section id="찾아오시는길" className="section-padding bg-white">
+        <section className="section-padding relative bg-white">
+          <div id="찾아오시는길" className="absolute -top-[70px]" />
           <Location />
         </section>
 
