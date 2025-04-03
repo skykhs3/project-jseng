@@ -42,20 +42,22 @@ export default function Home() {
 
         {/* Company Introduction */}
         <section id="회사소개" className="section-padding bg-white">
-          <CompanyIntroduction />
+          <div className="pt-20">
+            <CompanyIntroduction />
+          </div>
         </section>
 
         <Divider />
 
         {/* Main Business */}
-        <section id="사업영역" className="section-padding bg-secondary-50">
+        <section id="주요업무" className="section-padding bg-secondary-50">
           <MainBusiness />
         </section>
 
         <Divider />
 
         {/* CEO Message */}
-        <section id="CEO인사말" className="section-padding bg-white">
+        <section id="회사소식" className="section-padding bg-white">
           <CEOCompany />
         </section>
 

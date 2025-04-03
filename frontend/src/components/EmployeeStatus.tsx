@@ -7,7 +7,7 @@ const EmployeeStatus: React.FC = () => {
   return (
     <section className="p-10 text-center md:p-16 lg:flex">
       <h2 className="mb-5 text-start text-3xl font-medium text-[#09090b] lg:min-w-80 lg:text-4xl">
-        임직원 현황
+        조직도
       </h2>
       <div>
         <p className="break-keep text-start text-xl text-[#52525b]">

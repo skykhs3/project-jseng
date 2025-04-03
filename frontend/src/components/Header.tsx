@@ -8,11 +8,11 @@ const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#회사소개", label: "회사소개" },
-    { href: "#사업영역", label: "사업영역" },
-    { href: "#CEO인사말", label: "CEO인사말" },
+    { href: "#회사소개", label: "회사 소개" },
+    { href: "#주요업무", label: "주요 업무" },
+    { href: "#회사소식", label: "회사 소식" },
     { href: "#조직도", label: "조직도" },
-    { href: "#찾아오시는길", label: "찾아오시는길" },
+    { href: "#찾아오시는길", label: "찾아오시는 길" },
   ];
 
   useEffect(() => {
@@ -23,10 +23,10 @@ const Header: React.FC = () => {
           0 >= secondPage.getBoundingClientRect().top;
         if (isScrollPositionReachSecondPageTop) {
           setHeaderStyle(
-            "bg-white bg-opacity-90 webkit-backdrop-blur-16px shadow-md",
+            "bg-white bg-opacity-95 webkit-backdrop-blur-16px shadow-md",
           );
         } else {
-          setHeaderStyle("");
+          setHeaderStyle("bg-black bg-opacity-30 webkit-backdrop-blur-16px");
         }
       }
     };
@@ -39,9 +39,22 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const textShadowStyle = {
-    textShadow: "1px 1px 1px rgba(255, 255, 255, 1)",
-  };
+  // 스크롤 위치에 따라 다른 텍스트 스타일 적용
+  const logoTextClass = headerStyle.includes("bg-white")
+    ? "text-primary-800"
+    : "text-white";
+
+  const subtitleClass = headerStyle.includes("bg-white")
+    ? "text-secondary-600"
+    : "text-white text-opacity-90";
+
+  const navLinkClass = headerStyle.includes("bg-white")
+    ? "text-secondary-700 hover:text-primary-600"
+    : "text-white hover:text-primary-200";
+
+  const logoTextShadow = headerStyle.includes("bg-white")
+    ? { textShadow: "1px 1px 1px rgba(0, 0, 0, 0.1)" }
+    : { textShadow: "1px 1px 3px rgba(0, 0, 0, 0.7)" };
 
   return (
     <header
@@ -60,12 +73,12 @@ const Header: React.FC = () => {
             />
             <div>
               <h1
-                className="text-primary-800 text-xl font-bold leading-tight tracking-wider lg:text-2xl"
-                style={textShadowStyle}
+                className={`${logoTextClass} text-xl font-bold leading-tight tracking-wider lg:text-2xl`}
+                style={logoTextShadow}
               >
                 (주)정석기술연구소
               </h1>
-              <p className="text-secondary-600 text-xs font-medium lg:text-sm">
+              <p className={`${subtitleClass} text-xs font-medium lg:text-sm`}>
                 Construction technology support
               </p>
             </div>
@@ -73,12 +86,12 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
-            <ul className="flex space-x-6">
+            <ul className="flex space-x-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-secondary-700 hover:text-primary-600 transition"
+                    className={`${navLinkClass} font-medium transition`}
                   >
                     {link.label}
                   </a>
@@ -89,7 +102,10 @@ const Header: React.FC = () => {
 
           {/* Mobile menu button */}
           <button
-            className="text-secondary-800 lg:hidden"
+            className={`
+              ${headerStyle.includes("bg-white") ? "text-secondary-800" : "text-white"}
+              lg:hidden
+            `}
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
@@ -129,14 +145,20 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden">
+          <div
+            className={`rounded-b-lg lg:hidden ${headerStyle.includes("bg-white") ? "bg-white" : "bg-black bg-opacity-80"}`}
+          >
             <nav className="pb-4">
               <ul className="space-y-2">
                 {navLinks.map((link) => (
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="text-secondary-700 hover:bg-secondary-50 hover:text-primary-600 block px-4 py-2 transition"
+                      className={`block px-4 py-2 font-medium transition ${
+                        headerStyle.includes("bg-white")
+                          ? "text-secondary-700 hover:bg-secondary-50 hover:text-primary-600"
+                          : "hover:text-primary-300 text-white hover:bg-black hover:bg-opacity-50"
+                      }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.label}
