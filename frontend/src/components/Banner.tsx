@@ -13,7 +13,7 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
   const [isVideo1Visible, setIsVideo1Visible] = React.useState(true);
   const [isText1Animated, setIsText1Animated] = React.useState(false);
   const [isText2Animated, setIsText2Animated] = React.useState(false);
-  const [hasScrolled, setHasScrolled] = React.useState(false);
+  const [hasScrolled, setHasScrolled] = React.useState(true);
 
   const initBannerTextAnimation = () => {
     const timer = setTimeout(() => {
@@ -38,6 +38,12 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
   };
 
   useEffect(() => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition < 50) {
+      setHasScrolled(false);
+    }
+  }, []);
+  useEffect(() => {
     const timers = [...initBannerTextAnimation()];
     const interval = initBannerImageAnimation();
 
@@ -57,7 +63,7 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
       }
 
       const scrollPosition = window.scrollY;
-      console.log(scrollPosition, isProgrammaticScroll);
+      console.log(scrollPosition, isProgrammaticScroll, hasScrolled);
       if (scrollPosition > 50 && !hasScrolled) {
         setHasScrolled(true);
         // Action to perform when user scrolls down
@@ -112,7 +118,7 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
       {/* 텍스트 컨텐츠 */}
       <div className="absolute inset-0 z-[2] flex flex-col justify-center">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mt-20 max-w-2xl p-10 md:p-16">
+          <div className="max-w-2xl p-10 md:p-16">
             <p
               className={`text-2xl font-bold text-white md:text-3xl lg:text-4xl ${isText1Animated ? "animate-fadeInUp" : "collapse"}`}
               style={textShadowStyle}
@@ -124,8 +130,7 @@ const Banner: React.FC<BannerProps> = ({ isProgrammaticScroll }) => {
               className={`text-[38px] font-bold leading-tight text-white md:text-[50px] lg:text-[70px] ${isText2Animated ? "animate-fadeInUp" : "collapse"}`}
               style={textShadowStyle}
             >
-              건축시공기술사
-              <span className="hidden min-[350px]:inline">와</span>
+              건축시공기술사와
               <br />
               건축사가
               <br />

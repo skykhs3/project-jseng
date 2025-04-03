@@ -19,6 +19,18 @@ const Header: React.FC<HeaderProps> = ({ setIsProgrammaticScroll }) => {
     { href: "#찾아오시는길", label: "찾아오시는 길" },
   ];
 
+  useEffect(() => {
+    const secondPage = document.getElementById("회사소개");
+    const isScrollPositionReachSecondPageTop = secondPage
+      ? 0 >= secondPage.getBoundingClientRect().top
+      : false;
+    if (isScrollPositionReachSecondPageTop) {
+      setHeaderStyle(
+        "bg-white bg-opacity-95 webkit-backdrop-blur-16px shadow-md",
+      );
+    }
+  }, []);
+
   const handleScroll = () => {
     const secondPage = document.getElementById("회사소개");
     if (secondPage) {
@@ -54,16 +66,6 @@ const Header: React.FC<HeaderProps> = ({ setIsProgrammaticScroll }) => {
       }
     }
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const handleClickAnchor = () => {
-    setIsProgrammaticScroll(true);
-    setIsMobileMenuOpen(false);
-
-    // Reset programmatic scroll flag after navigation completes
-    setTimeout(() => {
-      setIsProgrammaticScroll(false);
-    }, 1000);
   };
 
   // 스크롤 위치에 따라 다른 텍스트 스타일 적용
