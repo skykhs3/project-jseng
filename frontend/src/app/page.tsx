@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1 bg-white dark:bg-secondary-950">
+      <main className="flex-1">
         {/* Hero Banner */}
         <Banner />
 
