@@ -9,11 +9,11 @@
   }
   
   body {
-    @apply text-secondary-800 antialiased;
+    @apply text-secondary-800 antialiased dark:text-secondary-200;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-medium leading-tight;
+    @apply font-medium leading-tight dark:text-white;
   }
 }
 
@@ -40,11 +40,11 @@
   }
   
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-md bg-primary-600 px-4 py-2 font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-md bg-primary-600 px-4 py-2 font-medium text-white transition-colors hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:bg-primary-700 dark:hover:bg-primary-600 dark:focus:ring-primary-400;
   }
   
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-md bg-secondary-100 px-4 py-2 font-medium text-secondary-800 transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-300 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-md bg-secondary-100 px-4 py-2 font-medium text-secondary-800 transition-colors hover:bg-secondary-200 focus:outline-none focus:ring-2 focus:ring-secondary-300 focus:ring-offset-2 dark:bg-secondary-800 dark:text-secondary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-600;
   }
 }
 
@@ -60,10 +60,21 @@
   transition: all 0.3s ease;
 }
 
+html.dark .slick-prev,
+html.dark .slick-next {
+  background: rgba(30, 41, 59, 0.8) !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 .slick-prev:hover,
 .slick-next:hover {
   background: white !important;
   transform: scale(1.1);
+}
+
+html.dark .slick-prev:hover,
+html.dark .slick-next:hover {
+  background: rgba(51, 65, 85, 0.9) !important;
 }
 
 .slick-prev {
@@ -79,6 +90,11 @@
   color: #1e293b !important;
   font-size: 20px !important;
   opacity: 0.9 !important;
+}
+
+html.dark .slick-prev:before,
+html.dark .slick-next:before {
+  color: #e2e8f0 !important;
 }
 
 .slick-dots {
@@ -118,8 +134,16 @@
   font-size: 12px !important;
 }
 
+html.dark .ceo-slider .slick-dots li button:before {
+  color: #e2e8f0 !important;
+}
+
 .ceo-slider .slick-dots li.slick-active button:before {
   color: #333 !important;
   opacity: 1 !important;
   font-size: 14px !important;
+}
+
+html.dark .ceo-slider .slick-dots li.slick-active button:before {
+  color: white !important;
 }

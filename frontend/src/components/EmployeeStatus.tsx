@@ -17,20 +17,22 @@ const EmployeeStatus: React.FC = () => {
         className={`${inView ? "animate-fadeInUp" : "opacity-0"}`}
         ref={ref}
       >
-        <h2 className="heading-lg text-primary-800 mb-6">조직도</h2>
+        <h2 className="heading-lg mb-6 text-primary-800 dark:text-primary-400">
+          조직도
+        </h2>
         <div>
-          <p className="text-secondary-700 mb-8 text-lg leading-relaxed">
-            <span className="text-primary-700 font-semibold">
+          <p className="mb-8 text-lg leading-relaxed text-secondary-700 dark:text-secondary-300">
+            <span className="font-semibold text-primary-700 dark:text-primary-400">
               정석기술연구소
             </span>
             는{" "}
-            <span className="text-primary-700 font-semibold">
+            <span className="font-semibold text-primary-700 dark:text-primary-400">
               모든 직원이 건설사 및 설계사 근무 경력을 보유한 전문가들로 구성된
               국내 유일의 엔지니어링 회사
             </span>
             입니다. <br></br>
             <br></br>전 직원이{" "}
-            <span className="text-primary-700 font-semibold">
+            <span className="font-semibold text-primary-700 dark:text-primary-400">
               건설분쟁 엔지니어링 회사에서 다년간 근무한 경험
             </span>
             을 바탕으로, 고객에게 최상의 서비스를 제공합니다.

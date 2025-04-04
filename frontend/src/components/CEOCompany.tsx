@@ -45,7 +45,7 @@ const CEOCompany: React.FC = () => {
     return (
       <button
         onClick={onClick}
-        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-3 shadow-md"
+        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-3 shadow-md dark:bg-secondary-800/80 dark:text-secondary-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@ const CEOCompany: React.FC = () => {
     return (
       <button
         onClick={onClick}
-        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-3 shadow-md"
+        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/80 p-3 shadow-md dark:bg-secondary-800/80 dark:text-secondary-200"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +104,10 @@ const CEOCompany: React.FC = () => {
   };
 
   return (
-    <div className="container-custom pb-12">
-      <h2 className="heading-lg text-primary-800 mb-6">회사 소식</h2>
+    <div className="container-custom pb-12" id="회사소식">
+      <h2 className="heading-lg mb-6 text-primary-800 dark:text-primary-400">
+        회사 소식
+      </h2>
       <Slider {...settings} className="ceo-slider">
         {images.map((image, index) => (
           <div key={index} className="px-4">
@@ -118,7 +120,7 @@ const CEOCompany: React.FC = () => {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
-            <p className="text-secondary-700 mt-4 text-center text-sm md:text-base">
+            <p className="mt-4 text-center text-sm text-secondary-700 md:text-base dark:text-secondary-300">
               {image.description}
             </p>
           </div>

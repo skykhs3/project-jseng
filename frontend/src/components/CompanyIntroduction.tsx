@@ -18,10 +18,26 @@ const CompanyIntroduction: React.FC = () => {
   });
 
   const stats = [
-    { number: "50+", label: "프로젝트 완료", color: "bg-primary-100" },
-    { number: "5+", label: "전문 기술자", color: "bg-secondary-100" },
-    { number: "50+", label: "법원 감정평가", color: "bg-accent-100" },
-    { number: "99%", label: "고객 만족도", color: "bg-primary-100" },
+    {
+      number: "50+",
+      label: "프로젝트 완료",
+      color: "bg-primary-100 dark:bg-primary-900",
+    },
+    {
+      number: "5+",
+      label: "전문 기술자",
+      color: "bg-secondary-100 dark:bg-secondary-800",
+    },
+    {
+      number: "50+",
+      label: "법원 감정평가",
+      color: "bg-accent-100 dark:bg-accent-900",
+    },
+    {
+      number: "99%",
+      label: "고객 만족도",
+      color: "bg-primary-100 dark:bg-primary-900",
+    },
   ];
 
   return (
@@ -32,11 +48,13 @@ const CompanyIntroduction: React.FC = () => {
       >
         {/* Company Introduction Content */}
         <div className="order-1">
-          <h2 className="heading-lg text-primary-800 mb-6">회사 소개</h2>
+          <h2 className="heading-lg mb-6 text-primary-800 dark:text-primary-400">
+            회사 소개
+          </h2>
 
-          <div className="text-secondary-700 space-y-6">
+          <div className="space-y-6 text-secondary-700 dark:text-secondary-300">
             <p className="text-lg leading-relaxed">
-              <span className="text-primary-700 font-semibold">
+              <span className="font-semibold text-primary-700 dark:text-primary-400">
                 정석기술연구소
               </span>
               는 건축, 토목, 엔지니어링, 건축물 하자진단, 안전진단, 법원
@@ -44,7 +62,7 @@ const CompanyIntroduction: React.FC = () => {
             </p>
 
             <p className="text-lg leading-relaxed">
-              <span className="text-primary-700 font-semibold">
+              <span className="font-semibold text-primary-700 dark:text-primary-400">
                 정석기술연구소
               </span>
               는 설계, 시공, 견적, 안전, 품질, CS, 법무분야의 건설사에서 근무한
@@ -53,7 +71,7 @@ const CompanyIntroduction: React.FC = () => {
 
             <p className="text-lg leading-relaxed">
               전문 역량을 쌓은 전문 기술자들로 구성된{" "}
-              <span className="text-primary-700 font-semibold">
+              <span className="font-semibold text-primary-700 dark:text-primary-400">
                 국내 최고의 엔지니어링 회사
               </span>
               입니다.
@@ -67,7 +85,7 @@ const CompanyIntroduction: React.FC = () => {
 
         {/* Company Image */}
         <div className="order-2 flex items-center justify-end md:order-2">
-          <div className="relative h-[300px] w-full max-w-[500px] overflow-hidden rounded-xl shadow-xl md:h-[400px]">
+          <div className="relative h-[300px] w-full max-w-[500px] overflow-hidden rounded-xl shadow-xl md:h-[400px] dark:shadow-secondary-900">
             <Image
               src="/image_people.jpg"
               alt="정석기술연구소 이미지"
@@ -86,12 +104,12 @@ const CompanyIntroduction: React.FC = () => {
         {stats.map((stat, index) => (
           <div
             key={index}
-            className={`flex flex-col items-center rounded-lg ${stat.color} p-6 text-center shadow-md transition-transform hover:-translate-y-1`}
+            className={`flex flex-col items-center rounded-lg ${stat.color} p-6 text-center shadow-md transition-transform hover:-translate-y-1 dark:shadow-secondary-900`}
           >
-            <span className="text-primary-700 text-4xl font-bold">
+            <span className="text-4xl font-bold text-primary-700 dark:text-primary-400">
               {stat.number}
             </span>
-            <span className="text-secondary-700 mt-2 text-lg font-medium">
+            <span className="mt-2 text-lg font-medium text-secondary-700 dark:text-secondary-300">
               {stat.label}
             </span>
           </div>
