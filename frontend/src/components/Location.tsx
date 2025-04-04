@@ -93,7 +93,7 @@ const Location: React.FC = () => {
     },
     {
       type: "버스",
-      details: "간선버스 541, 542, 740 교대역 정류장 하차",
+      details: "간선버스 541, 740, 6020, 144 교대역 정류장 하차",
       icon: "🚌",
     },
     {
@@ -115,7 +115,7 @@ const Location: React.FC = () => {
 
         <div className="grid gap-8 lg:grid-cols-2">
           {/* 지도 섹션 */}
-          <div className="order-2 min-h-[350px] overflow-hidden rounded-lg shadow-lg lg:order-1 dark:shadow-secondary-900">
+          <div className="order-2 min-h-[350px] overflow-hidden rounded-lg shadow-lg dark:shadow-secondary-900 lg:order-1">
             <div className="relative h-[350px] w-full md:h-full">
               <div id="naver-map" className="z-0 h-full w-full bg-white"></div>
               <button

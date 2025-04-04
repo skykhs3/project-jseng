@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main ]
   push:
-    branches: [ main, ci/docker ]
+    branches: [ main ]
   # 수동으로 워크플로우 실행 가능하도록 설정
   workflow_dispatch:
 
@@ -13,7 +13,9 @@ jobs:
   docker-build-test:
     name: Test Docker Build
     runs-on: ubuntu-latest
-    concurrency: docker-test-group
+    concurrency: 
+      group: build
+      cancel-in-progress: true
     
     steps:
       - name: Checkout code

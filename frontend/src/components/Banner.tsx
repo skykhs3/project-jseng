@@ -59,6 +59,7 @@ const Banner: React.FC = () => {
           muted={true}
           loop={true}
           preload="auto"
+          poster="/image_banner1_poster.webp"
           className={`absolute z-0 h-full w-full animate-withBannerWidthExpand object-cover transition-opacity duration-[2000ms] ease-in translate-z-0 ${isVideo1Visible ? "opacity-100" : "opacity-0"}`}
         >
           <source src="/video_banner1_tiny.mp4" type="video/mp4" />
@@ -70,6 +71,7 @@ const Banner: React.FC = () => {
           loop={true}
           playsInline={true}
           preload="auto"
+          poster="/image_banner2_poster.webp"
           className={`absolute z-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in translate-z-0 ${isVideo1Visible ? "opacity-0" : "opacity-100"}`}
           style={{ transform: "translateZ(0)" }}
         >

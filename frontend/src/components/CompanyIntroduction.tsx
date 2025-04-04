@@ -84,8 +84,8 @@ const CompanyIntroduction: React.FC = () => {
         </div>
 
         {/* Company Image */}
-        <div className="order-2 flex items-center justify-end md:order-2">
-          <div className="relative h-[300px] w-full max-w-[500px] overflow-hidden rounded-xl shadow-xl md:h-[400px] dark:shadow-secondary-900">
+        <div className="order-2 flex items-center justify-center md:justify-end">
+          <div className="relative h-[300px] w-full max-w-[500px] overflow-hidden rounded-xl shadow-xl dark:shadow-secondary-900 md:h-[400px]">
             <Image
               src="/image_people.jpg"
               alt="정석기술연구소 이미지"

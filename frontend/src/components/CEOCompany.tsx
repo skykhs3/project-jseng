@@ -117,10 +117,9 @@ const CEOCompany: React.FC = () => {
                 alt={image.description}
                 fill
                 className={`object-cover ${image.image_position}`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
-            <p className="mt-4 text-center text-sm text-secondary-700 md:text-base dark:text-secondary-300">
+            <p className="mt-4 text-center text-sm text-secondary-700 dark:text-secondary-300 md:text-base">
               {image.description}
             </p>
           </div>
