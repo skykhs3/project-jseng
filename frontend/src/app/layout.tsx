@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./globals.css";
+import { ThemeProvider } from "../components/ThemeProvider";
 
 // Load the font
 const pretendard = localFont({
@@ -74,8 +75,10 @@ export default function RootLayout({
           content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
         />
       </head>
-      <body className={`text-secondary-900 bg-white font-sans`}>
-        {children}
+      <body
+        className={`bg-white font-sans text-secondary-900 dark:bg-secondary-950 dark:text-secondary-100`}
+      >
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

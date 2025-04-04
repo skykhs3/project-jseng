@@ -19,7 +19,7 @@ const MyEmployeeCard: React.FC<MyEmployeeCardProps> = ({
   image,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md">
+    <div className="flex flex-col items-center justify-start rounded-lg border border-gray-200 bg-white p-4 shadow-md dark:border-secondary-800 dark:bg-secondary-900 dark:shadow-secondary-900">
       <div className="relative h-48 w-48 overflow-hidden rounded-full">
         <Image
           src={image}
@@ -30,10 +30,16 @@ const MyEmployeeCard: React.FC<MyEmployeeCardProps> = ({
         />
       </div>
       <div className="mt-4 text-center">
-        <h3 className="text-xl font-semibold text-[#09090b]">{name}</h3>
-        <p className="text-lg font-bold text-[#52525b]">{position}</p>
-        <p className="text-sm font-bold text-[#71717a]">{subPosition}</p>
-        <ul className="mt-2 list-inside list-disc text-start text-sm text-[#71717a]">
+        <h3 className="text-xl font-semibold text-[#09090b] dark:text-white">
+          {name}
+        </h3>
+        <p className="text-lg font-bold text-[#52525b] dark:text-secondary-300">
+          {position}
+        </p>
+        <p className="text-sm font-bold text-[#71717a] dark:text-secondary-400">
+          {subPosition}
+        </p>
+        <ul className="mt-2 list-inside list-disc text-start text-sm text-[#71717a] dark:text-secondary-400">
           {qualifications.map((qualification, index) => (
             <li key={index}>{qualification}</li>
           ))}

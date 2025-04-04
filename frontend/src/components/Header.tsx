@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import ThemeToggle from "./ThemeToggle";
 
 const Header: React.FC = () => {
   const [headerStyle, setHeaderStyle] = useState<string>("");
@@ -83,7 +84,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${headerStyle}`}
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${headerStyle} dark:bg-secondary-900 dark:bg-opacity-95`}
     >
       <div className="container-custom">
         <div className="flex h-[70px] items-center justify-between py-2 lg:h-[90px]">
@@ -98,83 +99,99 @@ const Header: React.FC = () => {
             />
             <div>
               <h1
-                className={`${logoTextClass} text-xl font-bold leading-tight tracking-wider lg:text-2xl`}
+                className={`${logoTextClass} text-xl font-bold leading-tight tracking-wider lg:text-2xl dark:text-white`}
                 style={logoTextShadow}
               >
                 (주)정석기술연구소
               </h1>
-              <p className={`${subtitleClass} text-xs font-medium lg:text-sm`}>
+              <p
+                className={`${subtitleClass} text-xs font-medium lg:text-sm dark:text-secondary-300`}
+              >
                 Construction technology support
               </p>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:block">
-            <ul className="flex space-x-8">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className={`${navLinkClass} font-medium transition`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const element = document.getElementById(
-                        link.href.substring(1),
-                      );
-                      if (element) {
-                        element.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <div className="hidden items-center space-x-6 lg:flex">
+            <nav>
+              <ul className="flex space-x-8">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className={`${navLinkClass} font-medium transition dark:text-secondary-200 dark:hover:text-primary-300`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        const element = document.getElementById(
+                          link.href.substring(1),
+                        );
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <ThemeToggle
+              textStyle={`
+                ${headerStyle.includes("bg-white") ? "text-secondary-800" : "text-white"}
+                dark:text-secondary-200`}
+            />
+          </div>
 
-          {/* Mobile menu button */}
-          <button
-            className={`
-              ${headerStyle.includes("bg-white") ? "text-secondary-800" : "text-white"}
-              lg:hidden
-            `}
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
-          </button>
+          {/* Mobile menu button and theme toggle on mobile */}
+          <div className="flex items-center space-x-2 lg:hidden">
+            <ThemeToggle
+              textStyle={`
+                ${headerStyle.includes("bg-white") ? "text-secondary-800" : "text-white"}
+                dark:text-secondary-200`}
+            />
+            <button
+              className={`
+                ${headerStyle.includes("bg-white") ? "text-secondary-800" : "text-white"}
+                dark:text-secondary-200
+              `}
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -189,7 +206,7 @@ const Header: React.FC = () => {
                       className={`block px-4 py-2 font-medium transition ${
                         headerStyle.includes("bg-white")
                           ? "text-secondary-700 hover:bg-secondary-50 hover:text-primary-600"
-                          : "hover:text-primary-300 text-white hover:bg-black hover:bg-opacity-50"
+                          : "text-white hover:bg-black hover:bg-opacity-50 hover:text-primary-300"
                       }`}
                       onClick={(e) => {
                         e.preventDefault();

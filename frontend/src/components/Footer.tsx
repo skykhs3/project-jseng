@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary-900 text-secondary-300 py-12">
+    <footer className="bg-secondary-900 py-12 text-secondary-300">
       <div className="container-custom">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="text-primary-400 mr-2 mt-0.5 h-5 w-5 flex-shrink-0"
+                  className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
                   <span>TEL: </span>
                   <a
                     href="tel:02-533-7753"
-                    className="text-primary-300 hover:text-primary-200 transition"
+                    className="text-primary-300 transition hover:text-primary-200"
                   >
                     02-533-7753
                   </a>
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="text-primary-400 mr-2 mt-0.5 h-5 w-5 flex-shrink-0"
+                  className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
                   <span>FAX: </span>
                   <a
                     href="tel:02-533-7752"
-                    className="text-primary-300 hover:text-primary-200 transition"
+                    className="text-primary-300 transition hover:text-primary-200"
                   >
                     02-533-7752
                   </a>
@@ -87,7 +87,7 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="text-primary-400 mr-2 mt-0.5 h-5 w-5 flex-shrink-0"
+                  className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
                   <span>Email: </span>
                   <a
                     href="mailto:jseng@jseng.co.kr"
-                    className="text-primary-300 hover:text-primary-200 transition"
+                    className="text-primary-300 transition hover:text-primary-200"
                   >
                     jseng@jseng.co.kr
                   </a>
@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
             <div className="flex items-start">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-primary-400 mr-2 mt-0.5 h-5 w-5 flex-shrink-0"
+                className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -153,7 +153,7 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="text-primary-400 mr-2 mt-0.5 h-5 w-5 flex-shrink-0"
+                  className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -173,7 +173,7 @@ const Footer: React.FC = () => {
               <li className="flex items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="text-primary-400 mr-2 mt-0.5 h-5 w-5 flex-shrink-0"
+                  className="mr-2 mt-0.5 h-5 w-5 flex-shrink-0 text-primary-400"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -194,7 +194,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-secondary-800 text-secondary-500 mt-12 border-t pt-8 text-center text-xs">
+        <div className="mt-12 border-t border-secondary-800 pt-8 text-center text-xs text-secondary-500">
           <p>
             © {currentYear} (주)정석기술연구소. 대표자: 김종석. All rights
             reserved.

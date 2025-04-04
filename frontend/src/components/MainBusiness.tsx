@@ -61,23 +61,27 @@ const MainBusiness: React.FC = () => {
         className={`opacity-0 ${inView ? "animate-fadeInUp animate-delay-300ms" : ""}`}
         ref={ref}
       >
-        <h2 className="heading-lg text-primary-800 mb-8">주요 업무</h2>
+        <h2 className="heading-lg mb-8 text-primary-800 dark:text-primary-400">
+          주요 업무
+        </h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {업무내용.map((item, index) => (
             <div
               key={index}
-              className={`border-secondary-200 flex flex-col rounded-lg border bg-white p-6 shadow-md transition-all hover:shadow-lg ${
+              className={`flex flex-col rounded-lg border border-secondary-200 bg-white p-6 shadow-md transition-all hover:shadow-lg dark:border-secondary-800 dark:bg-secondary-900 dark:shadow-lg ${
                 inView ? `animate-fadeInUp ` : "opacity-0"
               }`}
             >
               <div className="mb-4 flex items-center">
                 <span className="mr-3 text-3xl">{item.icon}</span>
-                <h3 className="text-primary-700 text-xl font-bold">
+                <h3 className="text-xl font-bold text-primary-700 dark:text-primary-400">
                   {item.title}
                 </h3>
               </div>
-              <p className="text-secondary-600 text-base">{item.description}</p>
+              <p className="text-base text-secondary-600 dark:text-secondary-300">
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
