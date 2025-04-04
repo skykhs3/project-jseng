@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main ]
   push:
-    branches: [ main ]
+    branches: [ main, ci/docker ]
   # 수동으로 워크플로우 실행 가능하도록 설정
   workflow_dispatch:
 
