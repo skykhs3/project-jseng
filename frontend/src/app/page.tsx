@@ -29,9 +29,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Banner */}
-        <div id="배너">
-          <Banner />
-        </div>
+        <Banner />
 
         {/* Company Introduction */}
         <section className="section-padding relative bg-white dark:bg-secondary-950">
