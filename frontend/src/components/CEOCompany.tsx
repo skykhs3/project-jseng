@@ -10,33 +10,60 @@ const CEOCompany: React.FC = () => {
   const images = [
     {
       imageUrl: "/image_horizontal1.jpeg",
-      description: "(주)KCC건설 소장 및 팀장 대상 하자 분쟁 대응방안 교육 연사",
+      description: "(주)KCC건설 소장 및 팀장 대상 하자분쟁 대응 방안 교육 연사",
       image_position: "object-center",
     },
     {
       imageUrl: "/image_horizontal2.jpeg",
-      description: "(주)KCC건설 소장 및 팀장 대상 하자 분쟁 대응방안 교육 연사",
+      description: "(주)KCC건설 소장 및 팀장 대상 하자분쟁 대응 방안 교육 연사",
       image_position: "object-center",
     },
     {
       imageUrl: "/image_horizontal4.png",
-      description: "LH 한국토지주택공사 주택품질·분쟁관리 전문가 초청강연 연사",
+      description:
+        "LH 한국토지주택공사 주택 품질·분쟁 관리 전문가 초청 강연 연사",
       image_position: "object-right",
     },
     {
       imageUrl: "/image_horizontal3.png",
-      description: "LH 한국토지주택공사 주택품질·분쟁관리 전문가 초청강연 연사",
+      description:
+        "LH 한국토지주택공사 주택 품질·분쟁 관리 전문가 초청 강연 연사",
       image_position: "object-bottom",
     },
+    // {
+    //   imageUrl: "/image_horizontal5.jpeg",
+    //   description: "1군 건설사 CS협의체 하자 소송 대응 방안 강연 연사",
+    //   image_position: "object-center",
+    // },
     {
-      imageUrl: "/image_horizontal5.jpeg",
-      description: "1군 건설사 CS협의체 하자소송 대응방안 강연 연사",
+      imageUrl: "/image_horizontal6.jpeg",
+      description: "1군 건설사 CS협의체 하자 소송 대응 방안 강연 연사",
+      image_position: "object-[center_right]",
+    },
+    {
+      imageUrl: "/image_horizontal7.jpeg",
+      description: "호반그룹 건설 분쟁 대응 방안 강연",
+      image_position: "object-[center_right]",
+    },
+    {
+      imageUrl: "/image_horizontal8.jpeg",
+      description: "LH 하자 보수 강연",
       image_position: "object-center",
     },
     {
-      imageUrl: "/image_horizontal6.jpeg",
-      description: "1군 건설사 CS협의체 하자소송 대응방안 강연 연사",
-      image_position: "object-[center_right]",
+      imageUrl: "/image_horizontal9.jpeg",
+      description: "금성백조건설 현장 직원 하자 방지 교육",
+      image_position: "object-center",
+    },
+    {
+      imageUrl: "/image_horizontal10.jpeg",
+      description: "건설사협의체 하자 소송 대응 방안 강연",
+      image_position: "object-center",
+    },
+    {
+      imageUrl: "/image_horizontal11.jpeg",
+      description: "반도건설 건축직 하자대응방안 강연",
+      image_position: "object-center",
     },
   ];
 
