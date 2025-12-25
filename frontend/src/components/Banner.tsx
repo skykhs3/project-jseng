@@ -6,18 +6,33 @@ import Image from "next/image";
 const Banner: React.FC = () => {
   const bannerVideo1Ref = useRef<HTMLVideoElement | null>(null);
   const bannerVideo2Ref = useRef<HTMLVideoElement | null>(null);
+  const lastScrollY = useRef<number>(0);
   const [isVideo1Visible, setIsVideo1Visible] = React.useState(true);
   const [isText1Animated, setIsText1Animated] = React.useState(false);
   const [isText2Animated, setIsText2Animated] = React.useState(false);
 
   const initBannerTextAnimation = () => {
-    const timer = setTimeout(() => {
+    const timerOfText1 = setTimeout(() => {
       setIsText1Animated(true);
     }, 2000);
-    const timer2 = setTimeout(() => {
+    const timerOfText2 = setTimeout(() => {
       setIsText2Animated(true);
     }, 3000);
-    return [timer, timer2];
+    return [timerOfText1, timerOfText2];
+  };
+
+  const goToFirstPage = () => {
+    const element = document.getElementById("배너");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const goToSecondPage = () => {
+    const element = document.getElementById("회사소개");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
@@ -41,6 +56,34 @@ const Banner: React.FC = () => {
       clearInterval(interval);
     };
   }, [isVideo1Visible]);
+
+  // 스크롤 감지
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const secondPage = document.getElementById("회사소개");
+
+      if (secondPage) {
+        // 스크롤 방향 감지
+        const scrollingDown = currentScrollY > lastScrollY.current;
+        const isScrollPositionInFirstPage =
+          0 < secondPage.getBoundingClientRect().top;
+
+        if (isScrollPositionInFirstPage) {
+          if (scrollingDown) goToSecondPage();
+          else goToFirstPage();
+        }
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const textShadowStyle = {
     textShadow: "3px 3px 8px rgba(0, 0, 0, 1), 0px 0px 15px rgba(0, 0, 0, 0.8)",
@@ -106,12 +149,7 @@ const Banner: React.FC = () => {
       <div className="absolute bottom-0 z-[2] flex w-full justify-center">
         <button
           className="absolute bottom-10 z-10 mx-auto animate-withArrowSlideUpDown"
-          onClick={() => {
-            const element = document.getElementById("회사소개");
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
+          onClick={goToSecondPage}
         >
           <Image
             src="/icon_down_arrow.png"
