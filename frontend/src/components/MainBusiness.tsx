@@ -62,7 +62,7 @@ const MainBusiness: React.FC = () => {
         ref={ref}
       >
         <h2 className="heading-lg mb-8 text-primary-800 dark:text-primary-400">
-          주요 업무
+          주요 수행 분야
         </h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
