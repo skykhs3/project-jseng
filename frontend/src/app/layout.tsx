@@ -12,14 +12,21 @@ const pretendard = localFont({
 });
 
 export const metadata = {
-  title: "(주)정석기술연구소",
+  title: "(주)정석기술연구소 | 건설분쟁·하자소송 기술지원 전문",
   description:
-    "건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석",
+    "건설분쟁·하자소송 기술(송무)지원 전문 기업. 건축시공기술사와 건축사가 직접 수행하는 준공도서 사전검토, 법원 공사비 감정·분석, 하자감정 타당성 검토, 건설소송 기술자문 서비스를 제공합니다.",
+  keywords:
+    "건설분쟁, 하자소송, 건설소송, 공사비감정, 준공도서검토, 하자감정, 건축시공기술사, 기술송무지원, 건설분쟁컨설팅, 법원감정",
+  metadataBase: new URL("https://jseng.fly.dev"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "(주)정석기술연구소",
+    title: "(주)정석기술연구소 | 건설분쟁·하자소송 기술지원 전문",
     description:
-      "건설분쟁·하자소송 기술(송무)지원 업무, 준공도서 사전검토, 법원 공사비 감정·분석",
+      "건설분쟁·하자소송 기술(송무)지원 전문 기업. 건축시공기술사와 건축사가 직접 수행하는 준공도서 사전검토, 법원 공사비 감정·분석, 하자감정 타당성 검토, 건설소송 기술자문 서비스를 제공합니다.",
     url: "https://jseng.fly.dev/",
+    siteName: "(주)정석기술연구소",
     images: [
       {
         url: "https://jseng.fly.dev/icon_logo.png",
@@ -29,6 +36,13 @@ export const metadata = {
     ],
     locale: "ko_KR",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "(주)정석기술연구소 | 건설분쟁·하자소송 기술지원 전문",
+    description:
+      "건설분쟁·하자소송 기술(송무)지원 전문 기업. 건축시공기술사와 건축사가 직접 수행하는 준공도서 사전검토, 법원 공사비 감정·분석, 하자감정 타당성 검토, 건설소송 기술자문 서비스를 제공합니다.",
+    images: ["https://jseng.fly.dev/icon_logo.png"],
   },
 };
 
