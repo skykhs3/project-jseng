@@ -41,7 +41,7 @@ const CompanyIntroduction: React.FC = () => {
   ];
 
   return (
-    <div className="container-custom" id="회사소개">
+    <div className="container-custom" id="회사개요">
       <div
         className={`grid grid-cols-1 gap-12 md:grid-cols-2 ${contentInView ? "animate-fadeInUp" : "opacity-0"}`}
         ref={contentRef}
@@ -49,7 +49,7 @@ const CompanyIntroduction: React.FC = () => {
         {/* Company Introduction Content */}
         <div className="order-1">
           <h2 className="heading-lg mb-6 text-primary-800 dark:text-primary-400">
-            회사 소개
+            회사 개요
           </h2>
 
           <div className="space-y-6 text-secondary-700 dark:text-secondary-300">
@@ -57,24 +57,30 @@ const CompanyIntroduction: React.FC = () => {
               <span className="font-semibold text-primary-700 dark:text-primary-400">
                 정석기술연구소
               </span>
-              는 건축, 토목, 엔지니어링, 건축물 하자진단, 안전진단, 법원
-              감정평가 등 다양한 건설 관련 서비스를 제공합니다.
+              는 건설하자, 건설분쟁, 법원감정 대응을 전문으로 수행하는
+              기술자문기관입니다.
             </p>
 
             <p className="text-lg leading-relaxed">
-              <span className="font-semibold text-primary-700 dark:text-primary-400">
-                정석기술연구소
-              </span>
-              는 설계, 시공, 견적, 안전, 품질, CS, 법무분야의 건설사에서 근무한
-              기술자들로 이루어져 있습니다.
+              당사는 건설시공기술사 및 건축설계시공기술사를 보유하고 있으며,
+              전 직원이 건설현장 실무 경력을 갖춘 기술전문가로 구성되어
+              있습니다.
             </p>
 
             <p className="text-lg leading-relaxed">
-              전문 역량을 쌓은 전문 기술자들로 구성된{" "}
+              현장 경험과 기술사 자격을 기반으로{" "}
               <span className="font-semibold text-primary-700 dark:text-primary-400">
-                국내 최고의 엔지니어링 회사
+                기술송무(Technical Litigation Support)
               </span>
-              입니다.
+              {" "}및 감정 대응 중심의 기술 분석을 수행합니다.
+            </p>
+
+            <p className="text-lg leading-relaxed">
+              이론 중심 자문이 아닌,{" "}
+              <span className="font-semibold text-primary-700 dark:text-primary-400">
+                설계·시공·감리·현장관리 실무 경험
+              </span>
+              에 기반한 실질적 기술검토를 제공합니다.
             </p>
 
             {/* <div className="mt-8 flex">
