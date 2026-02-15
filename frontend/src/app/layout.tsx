@@ -88,6 +88,62 @@ export default function RootLayout({
           name="naver-site-verification"
           content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
         />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "(주)정석기술연구소",
+              description:
+                "건설분쟁·하자소송 기술(송무)지원 전문 기업. 건축시공기술사와 건축사가 직접 수행하는 준공도서 사전검토, 법원 공사비 감정·분석, 하자감정 타당성 검토, 건설소송 기술자문 서비스를 제공합니다.",
+              url: "https://jseng.fly.dev",
+              logo: "https://jseng.fly.dev/icon_logo.png",
+              image: "https://jseng.fly.dev/icon_logo.png",
+              telephone: "02-533-7753",
+              faxNumber: "02-533-7752",
+              email: "jseng@jseng.co.kr",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "서초중앙로24길 11, 요셉빌딩 7F",
+                addressLocality: "서초구",
+                addressRegion: "서울특별시",
+                postalCode: "06604",
+                addressCountry: "KR",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 37.494894,
+                longitude: 127.014925,
+              },
+              openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                ],
+                opens: "09:00",
+                closes: "18:00",
+              },
+              serviceType: [
+                "건설분쟁 기술지원",
+                "하자소송 기술송무지원",
+                "준공도서 사전검토",
+                "법원 공사비 감정·분석",
+                "하자감정 타당성 검토",
+                "건설소송 기술자문",
+              ],
+              areaServed: {
+                "@type": "Country",
+                name: "대한민국",
+              },
+            }),
+          }}
+        />
       </head>
       <body
         className={`bg-white font-sans text-secondary-900 dark:bg-secondary-950 dark:text-secondary-100`}
