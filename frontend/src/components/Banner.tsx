@@ -87,7 +87,7 @@ const Banner: React.FC = () => {
               className={`text-center text-2xl font-bold text-white md:text-3xl lg:text-4xl ${isText1Animated ? "animate-fadeInUp" : "collapse"}`}
               style={textShadowStyle}
             >
-              건설 분쟁 컨설팅 전문 <br />
+              건설분쟁 기술자문<br />
               (주)정석기술연구소
             </p>
             <div className="h-6 md:h-7 lg:h-8"></div>
@@ -107,7 +107,7 @@ const Banner: React.FC = () => {
         <button
           className="absolute bottom-10 z-10 mx-auto animate-withArrowSlideUpDown"
           onClick={() => {
-            const element = document.getElementById("회사소개");
+            const element = document.getElementById("회사개요");
             if (element) {
               element.scrollIntoView({ behavior: "smooth" });
             }

@@ -41,7 +41,7 @@ export default function Home() {
 
         {/* Main Business */}
         <section className="section-padding relative bg-secondary-50 dark:bg-secondary-900">
-          <div id="주요업무" className="absolute -top-[70px]" />
+          <div id="주요수행분야" className="absolute -top-[70px]" />
           <MainBusiness />
         </section>
 
