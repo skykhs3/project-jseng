@@ -83,12 +83,6 @@ export default function RootLayout({
         <meta name="application-name" content="(주)정석기술연구소" />
         <meta name="msapplication-TileColor" content="#2b5797" />
         <meta name="theme-color" content="#ffffff" />
-
-        <meta
-          name="naver-site-verification"
-          content="87f8d9d318bd413e98fb8045f87e63b644cdeffb"
-        />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
